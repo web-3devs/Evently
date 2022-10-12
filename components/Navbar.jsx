@@ -1,4 +1,3 @@
-import { ReactNode } from "react";
 import {
   Box,
   Flex,
@@ -16,8 +15,13 @@ import {
   useColorModeValue,
   Stack,
   Container,
+  chakra
 } from "@chakra-ui/react";
+
+
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { useUser } from "@auth0/nextjs-auth0";
+
 
 const Links = ["Dashboard", "Events", "Team"];
 
@@ -38,9 +42,11 @@ const NavLink = ({ children }) => (
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const { user,error, isLoading } = useUser();
+  console.log(user);
   return (
     <>
+    
       <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
         <Container maxW={"container.xl"}>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
@@ -63,6 +69,22 @@ export default function Navbar() {
                 ))}
               </HStack>
             </HStack>
+            <chakra.a href="/api/auth/login">
+                <Button
+                  colorScheme="green"
+                  display="inline-flex"
+                  alignItems="center"
+                  justifyContent="center"
+                  w={{
+                    base: "full",
+                    sm: "auto",
+                  }}
+                  size="md"
+                  cursor="pointer"
+                >
+                  Get Started
+                </Button>
+                </chakra.a>
             <Flex alignItems={"center"}>
               <Menu>
                 <MenuButton
