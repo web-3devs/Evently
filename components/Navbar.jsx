@@ -8,9 +8,9 @@ import {
   MenuList,
   MenuItem,
   MenuDivider,
-  useColorModeValue,
   Container,
   chakra,
+  Text,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 
@@ -20,13 +20,15 @@ export default function Navbar() {
   console.log(user);
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+    <Box px={4}>
       <Container maxW={"container.xl"}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>Web3Devs</Box>
           {user.currentUser ? (
             <Flex alignItems={"center"}>
-              <Box mr="2">{user.currentUser?.name}</Box>
+              <Text mr="4" fontSize={"md"} fontWeight="medium">
+                {user.currentUser?.name}
+              </Text>
               <Menu>
                 <MenuButton
                   as={Button}
@@ -42,24 +44,30 @@ export default function Navbar() {
                   />
                 </MenuButton>
                 <MenuList>
-                  <MenuItem>Profile</MenuItem>
+                  <chakra.a href="/profile">
+                    <MenuItem>Profile</MenuItem>
+                  </chakra.a>
                   <MenuDivider />
-                  <MenuItem>Sign out</MenuItem>
+                  <chakra.a href="/api/auth/logout">
+                    <MenuItem>Signout</MenuItem>
+                  </chakra.a>
                 </MenuList>
               </Menu>
             </Flex>
           ) : (
             <chakra.a href="/api/auth/login">
               <Button
-                colorScheme="green"
+                colorScheme="teal"
                 display="inline-flex"
                 alignItems="center"
                 justifyContent="center"
+                rounded={"md"}
                 w={{
                   base: "full",
                   sm: "auto",
                 }}
                 size="md"
+                fontWeight={"bold"}
                 cursor="pointer"
               >
                 Get Started

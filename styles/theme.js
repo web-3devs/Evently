@@ -1,8 +1,13 @@
 import { extendTheme } from "@chakra-ui/react";
 
 const config = {
-  initialColorMode: "dark",
+  defaultColorMode: "dark",
   useSystemColorMode: false,
+};
+
+const fonts = {
+  heading: "Syne",
+  body: "Work sans",
 };
 
 const theme = extendTheme({
@@ -26,6 +31,7 @@ const theme = extendTheme({
     },
   },
   config,
+  fonts,
 });
 
 export default theme;
