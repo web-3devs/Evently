@@ -64,11 +64,14 @@ export default function Navbar() {
             </Flex>
           ) : (
             <Button
-              colorScheme="teal"
+              colorScheme="white"
+              color={"black"}
+              border="1px"
+              boxShadow="6px 6px 0px black"
               display="inline-flex"
               alignItems="center"
               justifyContent="center"
-              rounded={"md"}
+              rounded={"sm"}
               onClick={() => {
                 router.push("/api/auth/login");
               }}
