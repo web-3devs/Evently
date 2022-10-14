@@ -1,4 +1,4 @@
-import prisma from '../../lib/prisma';
+import prisma from "../../lib/prisma";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
       const alreadyuser = await prisma.profile.findUnique({
         where: {
-          email,
+          email: email,
         },
       });
 
@@ -23,7 +23,6 @@ export default async function handler(req, res) {
       }
       res.status(200).json({ user: alreadyuser });
     } catch (error) {
-      console.log(error);
       res.status(400).json({ error });
     }
   } else {

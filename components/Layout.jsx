@@ -20,15 +20,12 @@ export default function Layout({ children }) {
         image: user.picture,
       }),
     });
-    console.log(data);
-    const jsondata = await data.json();
-    console.log(jsondata);
+    const UserData = await data.json();
+    dispatch(currentUser(UserData.user));
   }
 
   useEffect(() => {
     if (user) {
-      // console.log(user)
-      dispatch(currentUser(user));
       fetchData();
     }
   }, [user]);
