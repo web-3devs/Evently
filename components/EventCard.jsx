@@ -6,7 +6,6 @@ export default function EventCard() {
     <Box
       maxW="xs"
       bg="white"
-      boxShadow="lg"
       rounded="lg"
       mt={10}
       mx={["unset", 4]}
@@ -37,9 +36,8 @@ export default function EventCard() {
         </Heading>
         <Text fontSize="sm" color="gray.600" noOfLines={3} textAlign="justify">
           The easiest way to deploy your Next.js app is to use the Vercel
-          Platform
-          https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme
-          from the creators of Next.js.
+          Platform The easiest way to deploy your Next.js app is to use the
+          Vercel Platform
         </Text>
         <Button
           my={4}
