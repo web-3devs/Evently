@@ -10,6 +10,7 @@ import {
   MenuDivider,
   Container,
   Text,
+  Heading,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -23,7 +24,7 @@ export default function Navbar() {
     <Box px={4}>
       <Container maxW={"container.xl"}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Box>Web3Devs</Box>
+          <Heading>Web3Devs</Heading>
           {user.authenticated ? (
             <Flex alignItems={"center"}>
               <Text mr="4" fontSize={"md"} fontWeight="medium">

@@ -1,91 +1,63 @@
-import {
-  Box,
-  Center,
-  Text,
-  Stack,
-  List,
-  ListItem,
-  ListIcon,
-  Button,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { CheckIcon } from "@chakra-ui/icons";
+import { Box, Text, Button, Img, Flex, Heading } from "@chakra-ui/react";
+import { CalendarIcon } from "@chakra-ui/icons";
 
 export default function EventCard() {
   return (
-    <Center py={6}>
-      <Box
-        maxW={"330px"}
-        w={"full"}
-        bg={useColorModeValue("white", "gray.800")}
-        boxShadow={"2xl"}
-        rounded={"md"}
-        overflow={"hidden"}
-      >
-        <Stack
-          textAlign={"center"}
-          p={6}
-          color={useColorModeValue("gray.800", "white")}
-          align={"center"}
-        >
-          <Text
-            fontSize={"sm"}
-            fontWeight={500}
-            bg={useColorModeValue("green.50", "green.900")}
-            p={2}
-            px={3}
-            color={"green.500"}
-            rounded={"full"}
-          >
-            Hobby
+    <Box
+      maxW="xs"
+      bg="white"
+      boxShadow="lg"
+      rounded="lg"
+      mt={10}
+      mx={["unset", 4]}
+      border="1px"
+      _hover={{
+        boxShadow: "6px 6px 0px black",
+      }}
+    >
+      <Img
+        h={48}
+        w="full"
+        fit="cover"
+        mb={2}
+        roundedTop="lg"
+        src={"vercel.svg"}
+        alt={""}
+        borderBottom={"1px"}
+      />
+      <Box p={4}>
+        <Flex mb={2} alignItems="center">
+          <CalendarIcon />
+          <Text fontSize={"md"} fontWeight="semibold" ml={2}>
+            22 June 2022
           </Text>
-          <Stack direction={"row"} align={"center"} justify={"center"}>
-            <Text fontSize={"3xl"}>$</Text>
-            <Text fontSize={"6xl"} fontWeight={800}>
-              79
-            </Text>
-            <Text color={"gray.500"}>/month</Text>
-          </Stack>
-        </Stack>
-
-        <Box bg={useColorModeValue("gray.50", "gray.900")} px={6} py={10}>
-          <List spacing={3}>
-            <ListItem>
-              <ListIcon as={CheckIcon} color="green.400" />
-              5.000 page views
-            </ListItem>
-            <ListItem>
-              <ListIcon as={CheckIcon} color="green.400" />
-              50 automation executions
-            </ListItem>
-            <ListItem>
-              <ListIcon as={CheckIcon} color="green.400" />
-              50 identified users
-            </ListItem>
-            <ListItem>
-              <ListIcon as={CheckIcon} color="green.400" />
-              All features
-            </ListItem>
-          </List>
-
-          <Button
-            mt={10}
-            w={"full"}
-            bg={"green.400"}
-            color={"white"}
-            rounded={"xl"}
-            boxShadow={"0 5px 20px 0px rgb(72 187 120 / 43%)"}
-            _hover={{
-              bg: "green.500",
-            }}
-            _focus={{
-              bg: "green.500",
-            }}
-          >
-            Start your trial
-          </Button>
-        </Box>
+        </Flex>
+        <Heading color="gray.800" fontWeight="bold" fontSize="2xl">
+          Event
+        </Heading>
+        <Text fontSize="sm" color="gray.600" noOfLines={3} textAlign="justify">
+          The easiest way to deploy your Next.js app is to use the Vercel
+          Platform
+          https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme
+          from the creators of Next.js.
+        </Text>
+        <Button
+          my={4}
+          w="full"
+          colorScheme="white"
+          color={"black"}
+          border="1px"
+          boxShadow="6px 6px 0px black"
+          rounded={"sm"}
+          size="md"
+          cursor="pointer"
+          _hover={{
+            bg: "purple.600",
+          }}
+        >
+          View more
+        </Button>
       </Box>
-    </Center>
+    </Box>
   );
 }
