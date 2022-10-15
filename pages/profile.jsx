@@ -12,10 +12,11 @@ import { useSelector } from "react-redux";
 
 export default function Profile() {
   const user = useSelector((state) => state.userData);
+  console.log(user)
   return (
     <Container maxW={"container.lg"} p={"6"}>
       <HStack alignItems={"center"} justifyContent={"space-around"}>
-        <Avatar src={user?.currentUser?.picture} size={36} />
+        <Avatar src={user?.currentUser?.image} size={36} />
         <Text mr="4" fontSize={"2xl"} fontWeight={"medium"}>
           Welcome {user?.currentUser?.name}
         </Text>
