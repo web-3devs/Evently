@@ -1,40 +1,54 @@
 import {
-  Avatar,
-  Button,
   Container,
   Flex,
-  HStack,
-  Text,
-  VStack,
+  Heading,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
 } from "@chakra-ui/react";
 import React from "react";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
+import EventCard from "../components/EventCard";
+import Profilebar from "../components/Profilebar";
 
 export default function Profile() {
-  const router = useRouter();
-  const user = useSelector((state) => state.userData);
-  console.log(user)
   return (
-    <Container maxW={"container.lg"} p={"6"}>
-      <HStack alignItems={"center"} justifyContent={"space-around"}>
-        <Avatar src={user?.currentUser?.image} size={36} />
-        <Text mr="4" fontSize={"2xl"} fontWeight={"medium"}>
-          Welcome {user?.currentUser?.name}
-        </Text>
-        <Button title="Sign Out" justifySelf={"flex-end"}>
-          Sign Out
-        </Button>
-        <Button title="Add Event" onClick={()=>{router.push('/AddEvent')}} justifySelf={"flex-end"}>
-          Add Event
-        </Button>
-      </HStack>
-      <VStack p={10} my={4}>
-        <Text fontSize={"2xl"} fontWeight={"medium"}>
-          Attanded Events :
-        </Text>
-        <Text>You have not attened any event on Evently</Text>
-      </VStack>
+    <Container maxW={"container.xl"}>
+      <Profilebar />
+      <Tabs isFitted variant="unstyled" border={"1px"} rounded="md" mb={10}>
+        <TabList>
+          <Tab
+            borderBottom={"1px"}
+            roundedTopLeft="md"
+            _selected={{ color: "white", bg: "black", borderBottom: 0 }}
+          >
+            Organized Events
+          </Tab>
+          <Tab
+            borderBottom={"1px"}
+            roundedTopRight="md"
+            _selected={{ color: "white", bg: "black", borderBottom: 0 }}
+          >
+            Attened Events
+          </Tab>
+        </TabList>
+        <TabPanels>
+          <TabPanel>
+            <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
+              <EventCard />
+              <EventCard />
+              <EventCard />
+              <EventCard />
+              <EventCard />
+              <EventCard />
+            </Flex>
+          </TabPanel>
+          <TabPanel>
+            <Heading>Attened</Heading>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </Container>
   );
 }
