@@ -52,18 +52,28 @@ export default function Navbar() {
                     name={user.currentUser?.name}
                   />
                 </MenuButton>
-                <MenuList rounded={"lg"} boxShadow="6px 6px 0 black">
+                <MenuList rounded={"lg"} boxShadow="6px 6px 0 black" p={0}>
                   <MenuItem
                     onClick={() => {
                       router.push("/profile");
                     }}
+                    p={3}
+                    roundedTop="lg"
+                    _hover={{
+                      bg: "purple.400",
+                    }}
                   >
                     Profile
                   </MenuItem>
-                  <MenuDivider />
+                  <MenuDivider m={0} />
                   <MenuItem
                     onClick={() => {
                       router.push("/api/auth/logout");
+                    }}
+                    p={3}
+                    roundedBottom="lg"
+                    _hover={{
+                      bg: "purple.400",
                     }}
                   >
                     Signout
