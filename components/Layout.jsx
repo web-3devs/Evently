@@ -20,7 +20,10 @@ export default function Layout({ children }) {
         image: user.picture,
       }),
     });
+    console.log(data);
     const UserData = await data.json();
+    console.log(UserData);
+
     dispatch(currentUser(UserData.user));
   }
 
