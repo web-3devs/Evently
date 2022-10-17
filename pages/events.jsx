@@ -5,15 +5,14 @@ import EventDetail from "../components/EventDetail";
 export default function Events() {
   return (
     <Container maxW={"container.xl"}>
-      {/* <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
+      <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
         <EventCard />
         <EventCard />
         <EventCard />
         <EventCard />
         <EventCard />
         <EventCard />
-        <EventCard />
-      </Flex> */}
+      </Flex>
       <EventDetail />
     </Container>
   );
