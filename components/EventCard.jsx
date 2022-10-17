@@ -1,5 +1,6 @@
 import { Box, Text, Button, Img, Flex, Heading } from "@chakra-ui/react";
 import { CalendarIcon } from "@chakra-ui/icons";
+import ShadowBtn from "./ShadowBtn";
 
 export default function EventCard() {
   return (
@@ -39,22 +40,7 @@ export default function EventCard() {
           Platform The easiest way to deploy your Next.js app is to use the
           Vercel Platform
         </Text>
-        <Button
-          my={4}
-          w="full"
-          colorScheme="white"
-          color={"black"}
-          border="1px"
-          boxShadow="6px 6px 0px black"
-          rounded={"sm"}
-          size="md"
-          cursor="pointer"
-          _hover={{
-            bg: "purple.600",
-          }}
-        >
-          View more
-        </Button>
+        <ShadowBtn title="View more" w={"full"} hoverBG={"purple.500"} animate/>
       </Box>
     </Box>
   );
