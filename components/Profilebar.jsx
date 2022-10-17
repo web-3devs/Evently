@@ -14,7 +14,6 @@ import {
   DrawerOverlay,
   Flex,
   FormControl,
-  FormLabel,
   Heading,
   IconButton,
   Input,
@@ -52,7 +51,7 @@ export default function Profilebar() {
           <Text textAlign={["center", "center", "start"]}>Web Developer</Text>
         </Box>
       </Flex>
-      <Stack mt={[4, 4, "unset"]}>
+      <Stack mt={[4, 4, "unset"]} justifyContent="space-between">
         <Button
           colorScheme="white"
           color={"black"}
