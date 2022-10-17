@@ -11,6 +11,7 @@ import {
   Container,
   Text,
   Heading,
+  Img,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
@@ -24,14 +25,13 @@ export default function Navbar() {
     <Box px={4}>
       <Container maxW={"container.xl"}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
-          <Button
-            colorScheme="whiteAlpha"
+          <Img
+            h={"32"}
+            src="logo.svg"
             onClick={() => {
               router.push("/");
             }}
-          >
-            <Heading textColor={"black"}>Web3Devs</Heading>
-          </Button>
+          />
           {user.authenticated ? (
             <Flex alignItems={"center"}>
               <Text mr="4" fontSize={"md"} fontWeight="medium">
