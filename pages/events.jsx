@@ -12,7 +12,7 @@ import EventCard from "../components/EventCard";
 
 export default function Events() {
   return (
-    <Container maxW={"container.xl"}>
+    <Container maxW={"container.xl"} p={0}>
       <Tabs isFitted variant="unstyled">
         <TabList mt={12}>
           <Tab

@@ -11,9 +11,7 @@ export default function EventCard() {
       mt={10}
       mx={["unset", 4]}
       border="1px"
-      _hover={{
-        boxShadow: "6px 6px 0px black",
-      }}
+      boxShadow="6px 6px 0px black"
     >
       <Img
         h={48}

@@ -22,8 +22,7 @@ const theme = extendTheme({
         backgroundColor: "transparent",
       },
       "&::-webkit-scrollbar-thumb": {
-        borderRadius: "5",
-        backgroundColor: "white",
+        backgroundColor: "black",
       },
       "&::-webkit-scrollbar-thumb:hover": {
         backgroundColor: "whitesmoke",
