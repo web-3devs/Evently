@@ -31,6 +31,7 @@ export default function Navbar() {
             onClick={() => {
               router.push("/");
             }}
+            cursor="pointer"
           />
           {user.authenticated ? (
             <Flex alignItems={"center"}>
@@ -51,7 +52,7 @@ export default function Navbar() {
                     name={user.currentUser?.name}
                   />
                 </MenuButton>
-                <MenuList>
+                <MenuList rounded={"lg"} boxShadow="6px 6px 0 black">
                   <MenuItem
                     onClick={() => {
                       router.push("/profile");
