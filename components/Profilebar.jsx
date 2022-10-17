@@ -90,6 +90,7 @@ export default function Profilebar() {
         placement="right"
         onClose={onClose}
         finalFocusRef={drawer}
+        size={["full", "xs"]}
       >
         <DrawerOverlay />
         <DrawerContent>
