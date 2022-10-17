@@ -1,6 +1,6 @@
 import { Container, Flex } from "@chakra-ui/react";
 import EventCard from "../components/EventCard";
-import EventDetail from "../components/EventDetail";
+// import EventDetail from "./EventDetail";
 
 export default function Events() {
   return (
@@ -13,7 +13,6 @@ export default function Events() {
         <EventCard />
         <EventCard />
       </Flex>
-      <EventDetail />
     </Container>
   );
 }

@@ -28,7 +28,7 @@ export default function Navbar() {
 					alignItems={'center'}
 					justifyContent={'space-between'}
 				>
-					<Heading>Web3Devs</Heading>
+					<Button colorScheme='whiteAlpha' onClick={()=>{router.push('/')}}><Heading textColor={'black'}>Web3Devs</Heading></Button>
 					{user.authenticated ? (
 						<Flex alignItems={'center'}>
 							<Text

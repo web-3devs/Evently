@@ -9,8 +9,10 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/router";
 
 export default function Profile() {
+  const router = useRouter();
   const user = useSelector((state) => state.userData);
   console.log(user)
   return (
@@ -22,6 +24,9 @@ export default function Profile() {
         </Text>
         <Button title="Sign Out" justifySelf={"flex-end"}>
           Sign Out
+        </Button>
+        <Button title="Add Event" onClick={()=>{router.push('/AddEvent')}} justifySelf={"flex-end"}>
+          Add Event
         </Button>
       </HStack>
       <VStack p={10} my={4}>

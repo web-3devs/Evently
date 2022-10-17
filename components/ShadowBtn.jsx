@@ -1,7 +1,9 @@
 import { Button } from '@chakra-ui/react'
 import React from 'react'
+import { useRouter } from 'next/router'
 
 export default function ShadowBtn({title,w,hoverBG,animate}) {
+  const router = useRouter();
   return (
     <Button
     my={4}
@@ -10,6 +12,11 @@ export default function ShadowBtn({title,w,hoverBG,animate}) {
     color={"black"}
     border="1px"
     boxShadow="6px 6px 0px black"
+    onClick={()=>{
+      router.push('/EventDetail')
+    }
+      
+    }
     rounded={"sm"}
     size="md"
     cursor="pointer"
