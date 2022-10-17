@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   const { user, error, isLoading } = useUser();
   const dispatch = useDispatch();
 
-  async function fetchData() {
+  async function setUser() {
     const data = await fetch("/api/setuser", {
       method: "POST",
       headers: {
@@ -26,7 +26,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     if (user) {
-      fetchData();
+      setUser();
     }
   }, [user]);
 

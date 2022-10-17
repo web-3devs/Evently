@@ -1,8 +1,5 @@
-import { useSelector } from 'react-redux'
-import Hero from '../components/Hero'
-import Events from './events'
+import Hero from "../components/Hero";
 
 export default function Home() {
-	const user = useSelector((state) => state.userData)
-	return user.authenticated ? <Events /> : <Hero />
+  return <Hero />;
 }

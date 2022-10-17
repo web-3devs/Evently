@@ -40,7 +40,12 @@ export default function EventCard() {
           Platform The easiest way to deploy your Next.js app is to use the
           Vercel Platform
         </Text>
-        <ShadowBtn title="View more" w={"full"} hoverBG={"purple.500"} animate/>
+        <ShadowBtn
+          title="View more"
+          w={"full"}
+          hoverBG={"purple.500"}
+          animate
+        />
       </Box>
     </Box>
   );
