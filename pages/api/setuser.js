@@ -3,7 +3,6 @@ import prisma from "../../lib/prisma";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      // console.log(req.body);
       const { email, name, image } = req.body;
 
       const alreadyuser = await prisma.profile.findUnique({
@@ -22,7 +21,6 @@ export default async function handler(req, res) {
         });
         res.status(200).json({ user: user });
       }
-      // console.log(alreadyuser);
       res.status(200).json({ user: alreadyuser });
     } catch (error) {
       res.status(400).json({ error });

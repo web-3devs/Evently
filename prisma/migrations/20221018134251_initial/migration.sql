@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "events" (
-    "id" UUID NOT NULL,
+    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
     "created_at" TIMESTAMPTZ(6) DEFAULT CURRENT_TIMESTAMP,
     "name" VARCHAR,
     "description" VARCHAR,
@@ -33,9 +33,6 @@ CREATE TABLE "profile" (
 
     CONSTRAINT "profile_pkey" PRIMARY KEY ("id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "events_id_key" ON "events"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "participants_id_key" ON "participants"("id");
