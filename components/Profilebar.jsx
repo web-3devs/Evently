@@ -21,42 +21,52 @@ import {
 	Text,
 	Textarea,
 	useDisclosure,
+	useToast,
 } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { currentUser } from '../context/slices/userSlice';
+import { currentUser } from '../context/slices/userSlice'
 
 export default function Profilebar() {
-	const [editProfile, seteditProfile] = useState(false);
-  const [data, setData] = useState({
-    name: '',
-    description: '',
-    email: ''
-  });
+	const [editProfile, seteditProfile] = useState(false)
+	const [data, setData] = useState({
+		name: '',
+		description: '',
+		email: '',
+	})
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const user = useSelector((state) => state.userData)
-  console.log(user);
-	const drawer = useRef();
-  const dispacth = useDispatch();
+	console.log(user)
+	const drawer = useRef()
+	const dispacth = useDispatch()
+	const toast = useToast()
 
-  const handleChange = (e)=>{
-    const key = e.target.name;
-    const value = e.target.value;
-    setData({...data,[key]:value});
-  }
+	const handleChange = (e) => {
+		const key = e.target.name
+		const value = e.target.value
+		setData({ ...data, [key]: value })
+    console.log(...data)
+	}
 
-  const handleSubmit = async ()=>{
-    data.email = user.currentUser?.email;
-    const update = await fetch('api/updateprofile',{
-      method: "PUT",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: JSON.stringify(data)
-    });
-    const updatedData = await update.json();
-    dispacth(currentUser(updatedData.user));
-  }
+	const handleSubmit = async () => {
+		data.email = user.currentUser?.email
+		const update = await fetch('api/updateprofile', {
+			method: 'PUT',
+			headers: {
+				'Content-type': 'application/json',
+			},
+			body: JSON.stringify(data),
+		})
+		const updatedData = await update.json()
+		dispacth(currentUser(updatedData.user))
+		toast({
+			title: 'Profile Updated Successfully',
+			status: 'success',
+			duration: 5000,
+			isClosable: true,
+      position: 'top'
+		})
+	}
 
 	return (
 		<Flex
@@ -199,11 +209,12 @@ export default function Profilebar() {
 											_placeholder={{ color: 'gray.500' }}
 											type='text'
 											border={'1px'}
-                      name='name'
+											name='name'
 											borderColor='black'
 											rounded='sm'
 											outline={'none'}
-                      onChange={handleChange}
+											onChange={handleChange}
+                      autoComplete='off'
 										/>
 									</FormControl>
 									<FormControl isRequired>
@@ -211,11 +222,12 @@ export default function Profilebar() {
 											placeholder='Description'
 											_placeholder={{ color: 'gray.500' }}
 											type='text'
-                      name='description'
+											name='description'
 											border={'1px'}
 											borderColor='black'
 											rounded='sm'
-                      onChange={handleChange}
+											onChange={handleChange}
+                      autoComplete='off'
 										/>
 									</FormControl>
 								</Stack>
@@ -245,7 +257,7 @@ export default function Profilebar() {
 									placeholder='Select Date and Time'
 									size='md'
 									type='datetime-local'
-                  border={'1px'}
+									border={'1px'}
 									borderColor='black'
 									rounded='sm'
 								/>
@@ -269,7 +281,10 @@ export default function Profilebar() {
 							border={'1px'}
 							rounded='sm'
 							color={'black'}
-              onClick={()=>{handleSubmit();onClose()}}
+							onClick={() => {
+								handleSubmit()
+								onClose()
+							}}
 						>
 							Save
 						</Button>
