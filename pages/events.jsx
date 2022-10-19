@@ -13,10 +13,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import EventCard from '../components/EventCard'
 import { allEvents } from '../context/slices/alleventsSlice'
 export default function Events() {
+	const alleventsdata = useSelector((state) => state.allEvents)
 	const dispatch = useDispatch()
-	useEffect(() => {
-		getAllEvents()
-	}, [])
+	// useEffect(() => {
+	// 	getAllEvents()
+	// }, [])
 
 	const getAllEvents = async () => {
 		const fetchAllEvents = await fetch('/api/getallevents')
@@ -24,7 +25,6 @@ export default function Events() {
 		console.log(eventsdata)
 		if (!fetchAllEvents.ok) return
 		dispatch(allEvents(eventsdata))
-		const alleventsdata = useSelector((state) => state.allEvents)
 		console.log(alleventsdata)
 	}
 

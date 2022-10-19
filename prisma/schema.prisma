@@ -14,7 +14,7 @@ model events {
   description  String?       @db.VarChar
   date_time    DateTime?     @db.Timestamptz(6)
   image        String?       @db.VarChar
-  created_by   String        @db.VarChar
+  created_by   String        @db.VarChar 
   profile      profile?      @relation(fields: [created_by], references: [email], onDelete: NoAction, onUpdate: NoAction)
   participants participants?
 }
