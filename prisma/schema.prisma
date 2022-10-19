@@ -14,8 +14,8 @@ model events {
   description  String?       @db.VarChar
   date_time    DateTime?     @db.Timestamptz(6)
   image        String?       @db.VarChar
-  created_by   String        @unique @db.VarChar
-  profile      profile       @relation(fields: [created_by], references: [email], onDelete: NoAction, onUpdate: NoAction)
+  created_by   String        @db.Uuid
+  profile      profile       @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
   participants participants?
 }
 
@@ -31,9 +31,9 @@ model participants {
 model profile {
   id          String    @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   created_at  DateTime? @default(now()) @db.Timestamptz(6)
-  email       String    @unique @db.VarChar
+  email       String    @db.VarChar
   name        String    @db.VarChar
   description String?   @db.VarChar
   image       String?   @db.VarChar
-  events      events?
+  events      events[]
 }

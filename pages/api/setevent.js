@@ -5,8 +5,6 @@ export default async function handler(req, res) {
     try {
       const { name, description, created_by, username } = req.body;
 
-      console.log(req.body);
-
       const event = await prisma.events.create({
         data: {
           name,
