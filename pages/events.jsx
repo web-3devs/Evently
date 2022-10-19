@@ -40,16 +40,20 @@ export default function Events() {
 				isFitted
 				variant='unstyled'
 			>
-				<TabList mt={12}>
+				<TabList mt={12} maxW={'3xl'} mx={'auto'}>
 					<Tab
 						border={'1px'}
-						_selected={{ color: 'white', bg: 'black', border: 0 }}
+						_selected={{ color: 'white', bg: 'purple.500', border: 0 }}
+						roundedTopLeft={'md'}
+						roundedBottomLeft={'md'}
 					>
 						Upcoming Events
 					</Tab>
 					<Tab
 						border={'1px'}
-						_selected={{ color: 'white', bg: 'black', border: 0 }}
+						_selected={{ color: 'white', bg: 'purple.500', border: 0 }}
+						roundedTopRight={'md'}
+						roundedBottomRight={'md'}
 					>
 						Previous Events
 					</Tab>

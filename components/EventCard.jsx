@@ -9,7 +9,8 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
 	return (
 		<Box
 			maxW='xs'
-			bg='white'
+			bg='purple.100'
+			// bgGradient="linear(to-r, #e5d6ff, #cbfcf8)"
 			rounded='lg'
 			mt={10}
 			mx={['unset', 4]}
@@ -22,11 +23,11 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
 				fit='cover'
 				mb={2}
 				roundedTop='lg'
-				src={'vercel.svg'}
+				src={'BootcampWeb3Devs.png'}
 				alt={''}
-				borderBottom={'1px'}
+				// borderBottom={'1px solid'}
 			/>
-			<Box p={4}>
+			<Box p={4} minH={52}>
 				<Flex
 					mb={2}
 					alignItems='center'
@@ -52,17 +53,22 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
 					color='gray.600'
 					noOfLines={3}
 					textAlign='justify'
+					mt={2}
 				>
 					{desc}
 				</Text>
 				<Button
-					colorScheme='white'
-					color={'black'}
-					border='1px'
+					colorScheme='purple'
+					mt={4}
+					color={'white'}
+					border='1px black'
 					boxShadow='6px 6px 0px black'
 					rounded={'sm'}
 					size='md'
 					cursor='pointer'
+					_hover={{
+						boxShadow:'0px 0px 0px black'
+					}}
 					onClick={() => {
 						router.push(`/event/${index}`)
 					}}
