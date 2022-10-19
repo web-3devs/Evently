@@ -15,7 +15,7 @@ import { ArrowForwardIcon } from "@chakra-ui/icons";
 export default function Hero() {
   const router = useRouter();
   return (
-    <Container maxW={"7xl"}>
+    <Container maxW={"7xl"} >
       <Flex justifyContent={'space-around'} alignItems='center' flexDirection={{ sm: 'column', md: 'row'}}>
       <Flex w={"full"}>
           <Image

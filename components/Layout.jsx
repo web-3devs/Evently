@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { useDispatch } from "react-redux";
 import { currentUser } from "../context/slices/userSlice";
 import { useEffect } from "react";
+import { Container } from "@chakra-ui/react";
 
 export default function Layout({ children }) {
   const { user, error, isLoading } = useUser();
@@ -34,8 +35,11 @@ export default function Layout({ children }) {
 
   return (
     <>
+    <Container bgImage='./Mesh.svg' bgSize={'cover'} bgRepeat={'no-repeat'} minH={'100vh'} minW={'full'} >
+
       <Navbar />
       {children}
+    </Container>
     </>
   );
 }
