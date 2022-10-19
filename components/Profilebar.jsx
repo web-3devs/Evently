@@ -17,14 +17,15 @@ import {
   Heading,
   IconButton,
   Input,
-  Skeleton,
   Stack,
   Text,
   Textarea,
   useDisclosure,
+  useToast,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { allEvents } from "../context/slices/alleventsSlice";
 import { currentUser } from "../context/slices/userSlice";
 
 export default function Profilebar() {
@@ -33,16 +34,22 @@ export default function Profilebar() {
   const user = useSelector((state) => state.userData);
   const drawer = useRef();
   const dispacth = useDispatch();
+  const toast = useToast();
+
+  console.log(user);
+
   const [data, setData] = useState({
     name: "",
     description: "",
-    email: "",
+    user_id: "",
   });
+
   const [event, setEvent] = useState({
     name: "",
     description: "",
     date_time: "",
     created_by: "",
+    username: "",
   });
 
   const handleChange = (e) => {
@@ -57,7 +64,8 @@ export default function Profilebar() {
 
   const handleSubmit = async () => {
     if (editProfile) {
-      data.email = user.currentUser?.email;
+      console.log(user.currentUser?.id);
+      data.user_id = user.currentUser?.id;
       const update = await fetch("/api/updateprofile", {
         method: "PUT",
         headers: {
@@ -66,9 +74,27 @@ export default function Profilebar() {
         body: JSON.stringify(data),
       });
       const updatedData = await update.json();
-      dispacth(currentUser(updatedData.user));
+      if (update.ok) {
+        dispacth(currentUser(updatedData.user));
+        toast({
+          title: "Profile updated succesfully.",
+          status: "success",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Some errored occured !",
+          status: "error",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     } else {
       event.created_by = user.currentUser?.email;
+      event.username = user.currentUser?.name;
       const addEvent = await fetch("/api/setevent", {
         method: "POST",
         headers: {
@@ -77,8 +103,24 @@ export default function Profilebar() {
         body: JSON.stringify(event),
       });
       const eventData = await addEvent.json();
-      console.log(eventData);
-      // dispacth(currentUser(eventData));
+      if (addEvent.ok) {
+        dispacth(allEvents(eventData.event));
+        toast({
+          title: "event added succesfully.",
+          status: "success",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      } else {
+        toast({
+          title: "Some errored occured !",
+          status: "error",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+      }
     }
   };
 

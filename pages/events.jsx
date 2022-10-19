@@ -8,9 +8,26 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import EventCard from "../components/EventCard";
-
+import { allEvents } from "../context/slices/alleventsSlice";
 export default function Events() {
+  const alleventsdata = useSelector((state) => state.allEvents);
+  const dispatch = useDispatch();
+  // useEffect(() => {
+  // 	getAllEvents()
+  // }, [])
+
+  const getAllEvents = async () => {
+    const fetchAllEvents = await fetch("/api/getallevents");
+    const eventsdata = await fetchAllEvents.json();
+    console.log(eventsdata);
+    if (!fetchAllEvents.ok) return;
+    dispatch(allEvents(eventsdata));
+    console.log(alleventsdata);
+  };
+
   return (
     <Container maxW={"container.xl"} p={0}>
       <Tabs isFitted variant="unstyled" >

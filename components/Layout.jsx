@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 export default function Layout({ children }) {
   const { user, error, isLoading } = useUser();
+  console.log(user);
   const dispatch = useDispatch();
 
   async function setUser() {
@@ -21,6 +22,7 @@ export default function Layout({ children }) {
       }),
     });
     const UserData = await data.json();
+    console.log(UserData);
     dispatch(currentUser(UserData.user));
   }
 

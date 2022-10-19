@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     try {
       const { email, name, image } = req.body;
 
-      const alreadyuser = await prisma.profile.findUnique({
+      const alreadyuser = await prisma.profile.findFirst({
         where: {
           email: email,
         },
@@ -23,6 +23,7 @@ export default async function handler(req, res) {
       }
       res.status(200).json({ user: alreadyuser });
     } catch (error) {
+      console.log(error);
       res.status(400).json({ error });
     }
   } else {
