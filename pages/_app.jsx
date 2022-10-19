@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <ChakraProvider theme={theme}>
         <UserProvider>
-          <Layout>
+          <Layout bg={'yellow'}>
             <Component {...pageProps} />
           </Layout>
         </UserProvider>

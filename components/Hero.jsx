@@ -6,17 +6,26 @@ import {
   Text,
   Button,
   Icon,
+  Image
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
+
 export default function Hero() {
   const router = useRouter();
   return (
-    <Container maxW={"5xl"}>
+    <Container maxW={"7xl"}>
+      <Flex justifyContent={'space-around'} alignItems='center' flexDirection={{ sm: 'column', md: 'row'}}>
+      <Flex w={"full"}>
+          <Image
+            height={{ sm: "14rem", lg: "28rem" }}
+            src={'./illustration.svg'}
+          />
+        </Flex>
       <Stack
-        textAlign={"center"}
-        align={"center"}
+        textAlign={"left"}
+        align={"left"}
         spacing={{ base: 8, md: 10 }}
         py={{ base: 20, md: 28 }}
       >
@@ -24,9 +33,10 @@ export default function Hero() {
           fontWeight={600}
           fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
           lineHeight={"110%"}
+          mt={12}
         >
           Register for events{" "}
-          <Text as={"span"} color={"orange.400"}>
+          <Text as={"span"} color={"purple.500"}>
             with couple of clicks
           </Text>
         </Heading>
@@ -35,7 +45,7 @@ export default function Hero() {
           repeating, just log-in with google and click register and your are
           goog to go
         </Text>
-        <Stack spacing={6} direction={"row"}>
+        <Stack spacing={6} direction={"row"} textAlign={"left"}>
           <Button
             colorScheme="white"
             color={"black"}
@@ -43,10 +53,11 @@ export default function Hero() {
             boxShadow="6px 6px 0px black"
             _hover={{
               boxShadow: "0px 0px 0px black",
+              bgColor: 'purple.500'
             }}
             display="inline-flex"
             alignItems="center"
-            justifyContent="center"
+            justifyContent="left"
             rounded={"sm"}
             onClick={() => {
               router.push("/events");
@@ -61,13 +72,9 @@ export default function Hero() {
             Explore events <ArrowForwardIcon ml={2} />
           </Button>
         </Stack>
-        <Flex w={"full"}>
-          <Illustration
-            height={{ sm: "14rem", lg: "14rem" }}
-            mt={{ base: 12, sm: 16 }}
-          />
-        </Flex>
+        
       </Stack>
+      </Flex>
     </Container>
   );
 }
