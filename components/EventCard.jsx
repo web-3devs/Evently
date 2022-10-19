@@ -2,10 +2,11 @@ import { Box, Text, Button, Img, Flex, Heading } from '@chakra-ui/react'
 import { CalendarIcon } from '@chakra-ui/icons'
 import ShadowBtn from './ShadowBtn'
 import { useRouter } from 'next/router'
+import convertDate from '../utils/formatDate'
 
 export default function EventCard({ index, name, desc, image, date, posted }) {
-  const router = useRouter()
-  
+	const router = useRouter()
+
 	return (
 		<Box
 			maxW='xs'
@@ -38,7 +39,7 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
 						fontWeight='semibold'
 						ml={2}
 					>
-						22 June 2022
+						{date ? convertDate(date) : null}
 					</Text>
 				</Flex>
 				<Heading

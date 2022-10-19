@@ -11,14 +11,12 @@ import {
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useSelector } from 'react-redux'
-
+import convertDate, { getTime } from '../../utils/formatDate'
 function EventDetail() {
 	const router = useRouter()
 	const { id } = router.query
-	console.log(id)
 	const currentEvent = useSelector((state) => state.allEvents)
 	const eventdata = currentEvent.allEvents?.events[parseInt(id)]
-	console.log(eventdata)
 	return (
 		<Container maxW={'container.xl'}>
 			<Box mt={[6, 12]}>
@@ -93,7 +91,11 @@ function EventDetail() {
 									Date
 								</Text>
 							</Box>
-							<Text fontSize={'md'}>22 Jun 2022</Text>
+							<Text fontSize={'md'}>
+								{eventdata?.date_time
+									? convertDate(eventdata?.date_time)
+									: null}
+							</Text>
 						</HStack>
 						<HStack mt={4}>
 							<Box w='24'>
@@ -104,7 +106,11 @@ function EventDetail() {
 									Time
 								</Text>
 							</Box>
-							<Text fontSize={'md'}>10:30 PM</Text>
+							<Text fontSize={'md'}>
+								{eventdata?.date_time
+									? getTime(eventdata?.date_time)
+									: null}
+							</Text>
 						</HStack>
 						<HStack mt={4}>
 							<Box w='24'>
