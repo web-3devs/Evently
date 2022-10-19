@@ -47,7 +47,7 @@ export default function Profilebar() {
 	const [event, setEvent] = useState({
 		name: '',
 		description: '',
-		date_time: '',
+		date: null,
 		created_by: '',
 		username: '',
 	})
@@ -318,7 +318,7 @@ export default function Profilebar() {
 									border={'1px'}
 									borderColor='black'
 									rounded='sm'
-									name='date_time'
+									name='date'
 									onChange={handleChange}
 								/>
 							</Stack>
