@@ -35,6 +35,9 @@ CREATE TABLE "profile" (
 );
 
 -- CreateIndex
+CREATE UNIQUE INDEX "events_created_by_key" ON "events"("created_by");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "participants_id_key" ON "participants"("id");
 
 -- CreateIndex
