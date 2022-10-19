@@ -15,6 +15,7 @@ const theme = extendTheme({
     global: {
       "html, body": {
         scrollBehavior: "smooth",
+        backgroundColor: "orange.100"
       },
       "&::-webkit-scrollbar": {
         width: "1",

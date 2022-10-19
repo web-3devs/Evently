@@ -30,17 +30,22 @@ export default function Events() {
 
   return (
     <Container maxW={"container.xl"} p={0}>
-      <Tabs isFitted variant="unstyled">
-        <TabList mt={12}>
+      <Tabs isFitted variant="unstyled" >
+        <TabList mt={12} maxW={'3xl'} mx='auto' >
           <Tab
             border={"1px"}
-            _selected={{ color: "white", bg: "black", border: 0 }}
+            
+            roundedTopLeft={"lg"}
+            roundedBottomLeft={'md'}
+            _selected={{ color: "white", bg: "purple.500", border: 0 }}
           >
             Upcoming Events
           </Tab>
           <Tab
             border={"1px"}
-            _selected={{ color: "white", bg: "black", border: 0 }}
+            roundedTopRight={"md"}
+            roundedBottomRight={'md'}
+            _selected={{ color: "white", bg: "purple.500", border: 0 }}
           >
             Previous Events
           </Tab>
