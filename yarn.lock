@@ -823,6 +823,39 @@
   resolved "https://registry.npmjs.org/@chakra-ui/visually-hidden/-/visually-hidden-2.0.11.tgz"
   integrity sha512-e+5amYvnsmEQdiWH4XMyvrtGTdwz//+48vwj5CsNWWcselzkwqodmciy5rIrT71/SCQDOtmgnL7ZWAUOffxfsQ==
 
+"@cloudinary/html@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@cloudinary/html/-/html-1.5.0.tgz#fac03954f99be84eddb2faf04895809171d87292"
+  integrity sha512-D9ozpUghSM2vbR6xhJ50jSFkICVd5vSwYHhTUdd3e2dAA+aUzwCeJraM5o5j4QSqzwfEoZTXhCNYYjFTnbNgYA==
+  dependencies:
+    "@types/lodash.clonedeep" "^4.5.6"
+    "@types/lodash.debounce" "^4.0.6"
+    "@types/node" "^14.14.10"
+    lodash.clonedeep "^4.5.0"
+    lodash.debounce "^4.0.8"
+    typescript "^4.1.2"
+
+"@cloudinary/react@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@cloudinary/react/-/react-1.5.0.tgz#af1352a31d606f2d9fca1826273c3754682f58ca"
+  integrity sha512-yXbAC+5MoJDwFj7s5gHbNVstBmmrgiKSNenBLrC6nNu4CtkfeD3n0SReigwuTPUp5HpHtXYiuLpiOPxV3+38tg==
+  dependencies:
+    "@cloudinary/html" "^1.5.0"
+
+"@cloudinary/transformation-builder-sdk@^1.0.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@cloudinary/transformation-builder-sdk/-/transformation-builder-sdk-1.1.0.tgz#57913951fd110a10904a2ef573784a6afd8a89a9"
+  integrity sha512-BqhTqIwPTyQ4hE0NjKXf/bF7VAjwe2ZHNuypdG6oQ6bDoiLTOSzdAZsg0jFndureQiVPavBKOzQTjHImp45z/g==
+  dependencies:
+    "@cloudinary/url-gen" "^1.7.0"
+
+"@cloudinary/url-gen@^1.7.0", "@cloudinary/url-gen@^1.8.6":
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/@cloudinary/url-gen/-/url-gen-1.8.6.tgz#5d28c6957c01f3237230181387c818394ff30aab"
+  integrity sha512-BZUHOns1+ECmZTGlcWWZ1mM7Fu5TsSWqbknGCVtmhgX2g82kwZa3W3LhICMu/xyPjuQmz8ykjXHAkRw5kRZf+w==
+  dependencies:
+    "@cloudinary/transformation-builder-sdk" "^1.0.0"
+
 "@ctrl/tinycolor@^3.4.0":
   version "3.4.1"
   resolved "https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz"
@@ -1306,6 +1339,20 @@
   dependencies:
     "@types/node" "*"
 
+"@types/lodash.clonedeep@^4.5.6":
+  version "4.5.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash.clonedeep/-/lodash.clonedeep-4.5.7.tgz#0e119f582ed6f9e6b373c04a644651763214f197"
+  integrity sha512-ccNqkPptFIXrpVqUECi60/DFxjNKsfoQxSQsgcBJCX/fuX1wgyQieojkcWH/KpE3xzLoWN/2k+ZeGqIN3paSvw==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.debounce@^4.0.6":
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash.debounce/-/lodash.debounce-4.0.7.tgz#0285879defb7cdb156ae633cecd62d5680eded9f"
+  integrity sha512-X1T4wMZ+gT000M2/91SYj0d/7JfeNZ9PeeOldSNoE/lunLeQXKvkmIumI29IaKMotU/ln/McOIvgzZcQ/3TrSA==
+  dependencies:
+    "@types/lodash" "*"
+
 "@types/lodash.mergewith@4.6.6":
   version "4.6.6"
   resolved "https://registry.npmjs.org/@types/lodash.mergewith/-/lodash.mergewith-4.6.6.tgz"
@@ -1322,6 +1369,11 @@
   version "18.8.4"
   resolved "https://registry.npmjs.org/@types/node/-/node-18.8.4.tgz"
   integrity sha512-WdlVphvfR/GJCLEMbNA8lJ0lhFNBj4SW3O+O5/cEGw9oYrv0al9zTwuQsq+myDUXgNx2jgBynoVgZ2MMJ6pbow==
+
+"@types/node@^14.14.10":
+  version "14.18.32"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.32.tgz#8074f7106731f1a12ba993fe8bad86ee73905014"
+  integrity sha512-Y6S38pFr04yb13qqHf8uk1nHE3lXgQ30WZbv1mLliV9pt0NjvqdWttLcrOYLnXbOafknVYRHZGoMSpR9UwfYow==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -1641,6 +1693,19 @@ clone-response@^1.0.2:
   integrity sha512-ROoL94jJH2dUVML2Y/5PEDNaSHgeOdSDicUyS7izcF63G6sTc/FTjLub4b8Il9S8S0beOfYt0TaA5qvFK+w0wA==
   dependencies:
     mimic-response "^1.0.0"
+
+cloudinary-core@^2.13.0:
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/cloudinary-core/-/cloudinary-core-2.13.0.tgz#b59f90871b6c708c3d0735b9be47ac08181c57fb"
+  integrity sha512-Nt0Q5I2FtenmJghtC4YZ3MZZbGg1wLm84SsxcuVwZ83OyJqG9CNIGp86CiI6iDv3QobaqBUpOT7vg+HqY5HxEA==
+
+cloudinary-react@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/cloudinary-react/-/cloudinary-react-1.8.1.tgz#8d017d959776be5e80717918412504aa6f35214f"
+  integrity sha512-90LHbUPfB8Uj5tKY08+ladN8ONyfak8zjnlAgVc39vlxKCx3b9G0/+I5C1QQGDwBRqHKzxyXterfugbWUrCQhA==
+  dependencies:
+    cloudinary-core "^2.13.0"
+    prop-types "^15.8.1"
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -2744,6 +2809,16 @@ locate-path@^6.0.0:
   dependencies:
     p-locate "^5.0.0"
 
+lodash.clonedeep@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
+  integrity sha512-H5ZhCF25riFd9uB5UCkVKo61m3S/xZk1x4wA6yp/L3RFP6Z/eHH1ymQcGLo7J3GMPfm0V/7m1tryHuGVxpqEBQ==
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
 lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.merge/-/lodash.merge-4.6.2.tgz"
@@ -2753,6 +2828,11 @@ lodash.mergewith@4.6.2:
   version "4.6.2"
   resolved "https://registry.npmjs.org/lodash.mergewith/-/lodash.mergewith-4.6.2.tgz"
   integrity sha512-GK3g5RPZWTRSeLSpgP8Xhra+pnjBC56q9FZYe1d5RN3TJ35dbkGy3YqBSMbyCrlbi+CM9Z3Jk5yTL7RCsqboyQ==
+
+lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   version "1.4.0"
@@ -3553,6 +3633,11 @@ typedarray-to-buffer@^3.1.5:
   integrity sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==
   dependencies:
     is-typedarray "^1.0.0"
+
+typescript@^4.1.2:
+  version "4.8.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
+  integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
