@@ -26,11 +26,11 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
         alt={""}
         borderBottom={"1px"}
       />
-      <Box p={4} minH={52}>
+      <Box px={4} py={2} minH={52}>
         {date ? (
           <Flex mb={2} alignItems="center">
             <CalendarIcon />
-            <Text fontSize={"md"} fontWeight="semibold" ml={2}>
+            <Text fontSize={"sm"} fontWeight="semibold" ml={2}>
               {convertDate(date)}
             </Text>
           </Flex>
@@ -38,13 +38,7 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
         <Heading color="gray.800" fontWeight="bold" fontSize="2xl">
           {name}
         </Heading>
-        <Text
-          fontSize="sm"
-          color="gray.600"
-          noOfLines={2}
-          textAlign="justify"
-          mt={2}
-        >
+        <Text fontSize="sm" color="gray.600" noOfLines={2} textAlign="justify">
           {desc}
         </Text>
         <Button

@@ -8,36 +8,12 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import EventCard from "../components/EventCard";
 import EventSkleton from "../components/EventSkleton";
-import { allEvents } from "../context/slices/alleventsSlice";
+
 export default function Events() {
-  const [isLoading, setisLoading] = useState(true);
   const alleventsdata = useSelector((state) => state.allEvents);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (!alleventsdata) return;
-    getAllEvents().then((res) => {
-      dispatch(allEvents(res));
-      setisLoading(false);
-    });
-  }, []);
-  console.log(alleventsdata);
-
-  const getAllEvents = async () => {
-    try {
-      const fetchAllEvents = await fetch("/api/getallevents");
-      const eventsdata = await fetchAllEvents.json();
-      console.log(eventsdata);
-      if (!fetchAllEvents.ok) return;
-      return eventsdata;
-    } catch (err) {
-      setisLoading(true);
-    }
-  };
-
   return (
     <Container maxW={"container.xl"} p={0}>
       <Tabs isFitted variant="unstyled">
@@ -70,7 +46,7 @@ export default function Events() {
         <TabPanels>
           <TabPanel>
             <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
-              {isLoading ? (
+              {!alleventsdata ? (
                 <>
                   <EventSkleton />
                   <EventSkleton />
@@ -81,7 +57,7 @@ export default function Events() {
                 </>
               ) : (
                 <>
-                  {alleventsdata.allEvents?.events?.map((item, index) => {
+                  {alleventsdata.allEvents?.map((item, index) => {
                     return (
                       <EventCard
                         key={item.id}

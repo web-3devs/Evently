@@ -1,15 +1,15 @@
-import { useUser } from "@auth0/nextjs-auth0";
 import Navbar from "./Navbar";
+import { useUser } from "@auth0/nextjs-auth0";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { currentUser } from "../context/slices/userSlice";
-import { useEffect } from "react";
-import { Container } from "@chakra-ui/react";
+import { allEvents } from "../context/slices/alleventsSlice";
 
 export default function Layout({ children }) {
   const { user, error, isLoading } = useUser();
   const dispatch = useDispatch();
 
-  async function setUser() {
+  const setUser = async () => {
     const data = await fetch("/api/setuser", {
       method: "POST",
       headers: {
@@ -22,11 +22,18 @@ export default function Layout({ children }) {
       }),
     });
     const UserData = await data.json();
-    console.log(UserData);
     return UserData;
-  }
+  };
+
+  const getAllEvents = async () => {
+    const fetchAllEvents = await fetch("/api/getallevents");
+    const eventsdata = await fetchAllEvents.json();
+    if (!fetchAllEvents.ok) return;
+    dispatch(allEvents(eventsdata.events));
+  };
 
   useEffect(() => {
+    getAllEvents();
     if (!!user) {
       setUser().then((res) => {
         dispatch(currentUser(res.user));
@@ -36,16 +43,8 @@ export default function Layout({ children }) {
 
   return (
     <>
-      <Container
-        bgImage="./Mesh.svg"
-        bgSize={"cover"}
-        bgRepeat={"no-repeat"}
-        minH={"100vh"}
-        minW={"full"}
-      >
-        <Navbar />
-        {children}
-      </Container>
+      <Navbar />
+      {children}
     </>
   );
 }

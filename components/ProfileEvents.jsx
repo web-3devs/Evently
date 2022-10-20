@@ -7,9 +7,15 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 import EventCard from "./EventCard";
 
 export default function ProfileEvents() {
+  const alleventsdata = useSelector((state) => state.allEvents);
+  const user = useSelector((state) => state.userData);
+
+  console.log(user, alleventsdata);
+
   return (
     <Tabs isFitted variant="unstyled" border={"1px"} rounded="md" mb={10}>
       <TabList>
@@ -39,12 +45,19 @@ export default function ProfileEvents() {
       <TabPanels>
         <TabPanel>
           <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
-            <EventCard />
+            {alleventsdata.allEvents?.map((item, index) =>
+              user.currentUser.id === item.created_by ? (
+                <EventCard
+                  key={item.id}
+                  index={index}
+                  name={item.name}
+                  desc={item.description}
+                  image={item.image}
+                  date={item.date_time}
+                  posted={item.created_at}
+                />
+              ) : null
+            )}
           </Flex>
         </TabPanel>
         <TabPanel>

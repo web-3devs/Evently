@@ -39,7 +39,6 @@ export default function Profilebar() {
   const toast = useToast();
   const [image, setImage] = useState(null);
   const [previewurl, setpreviewurl] = useState("");
-  console.log(user);
 
   const [data, setData] = useState({
     name: "",

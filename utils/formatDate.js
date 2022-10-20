@@ -18,7 +18,6 @@ function convertDate(timestamp) {
   let date = dateObj.getDate();
   let year = dateObj.getFullYear();
   let hour = dateObj.getHours();
-  console.log(date, months[month]);
   return `${date} ${month} ${year}`;
 }
 export default convertDate;
