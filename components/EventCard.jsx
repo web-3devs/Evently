@@ -1,6 +1,5 @@
 import { Box, Text, Button, Img, Flex, Heading } from "@chakra-ui/react";
 import { CalendarIcon } from "@chakra-ui/icons";
-import ShadowBtn from "./ShadowBtn";
 import { useRouter } from "next/router";
 import convertDate from "../utils/formatDate";
 

@@ -3,14 +3,7 @@ import prisma from "../../lib/prisma";
 export default async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const {
-        name,
-        description,
-        created_by,
-        username,
-        date,
-        user_id,
-      } = req.body;
+      const { name, description, date, user_id } = req.body;
       const date_time = new Date(date);
       const event = await prisma.events.create({
         data: {

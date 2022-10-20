@@ -51,8 +51,6 @@ export default function Profilebar() {
     name: "",
     description: "",
     date: null,
-    created_by: "",
-    username: "",
     user_id: "",
   });
 
@@ -97,8 +95,6 @@ export default function Profilebar() {
         });
       }
     } else {
-      event.created_by = user.currentUser?.email;
-      event.username = user.currentUser?.name;
       event.user_id = user.currentUser?.id;
       const addEvent = await fetch("/api/setevent", {
         method: "POST",
@@ -217,7 +213,11 @@ export default function Profilebar() {
                 <FormControl id="userName">
                   <Stack direction={["column", "row"]} spacing={6}>
                     <Center>
-                      <Avatar size="xl" src={user.currentUser?.image}>
+                      <Avatar
+                        size="xl"
+                        src={user.currentUser?.image}
+                        name={user.currentUser?.name}
+                      >
                         <AvatarBadge
                           as={IconButton}
                           size="sm"
@@ -316,6 +316,7 @@ export default function Profilebar() {
                     src={previewurl}
                     width={"52"}
                     height={"200"}
+                    alt="preview image"
                     style={{
                       marginBlock: 2,
                       borderRadius: 8,
