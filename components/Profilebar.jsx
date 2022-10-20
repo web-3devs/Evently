@@ -1,36 +1,36 @@
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import {
-	Avatar,
-	AvatarBadge,
-	Box,
-	Button,
-	Center,
-	Drawer,
-	DrawerBody,
-	DrawerCloseButton,
-	DrawerContent,
-	DrawerFooter,
-	DrawerHeader,
-	DrawerOverlay,
-	Flex,
-	FormControl,
-	Heading,
-	IconButton,
-	Input,
-	Stack,
-	Text,
-	Textarea,
-	useDisclosure,
-	useToast,
-} from '@chakra-ui/react'
-import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { allEvents } from '../context/slices/alleventsSlice'
-import { currentUser } from '../context/slices/userSlice'
-import EventCard from '../components/EventCard'
-import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen'
-import uploadImage from '../utils/uploadImage'
+  Avatar,
+  AvatarBadge,
+  Box,
+  Button,
+  Center,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
+  FormControl,
+  Heading,
+  IconButton,
+  Input,
+  Stack,
+  Text,
+  Textarea,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { allEvents } from "../context/slices/alleventsSlice";
+import { currentUser } from "../context/slices/userSlice";
+import EventCard from "../components/EventCard";
+import { Cloudinary, CloudinaryImage } from "@cloudinary/url-gen";
+import uploadImage from "../utils/uploadImage";
 
 export default function Profilebar() {
   const [editProfile, seteditProfile] = useState(false);
@@ -68,7 +68,6 @@ export default function Profilebar() {
 
   const handleSubmit = async () => {
     if (editProfile) {
-      console.log(user.currentUser?.id);
       data.user_id = user.currentUser?.id;
       const update = await fetch("/api/updateprofile", {
         method: "PUT",
@@ -98,9 +97,9 @@ export default function Profilebar() {
       }
     } else {
       event.user_id = user.currentUser?.id;
-      const imageLink = await uploadImage(image)
-			console.log(imageLink)
-			event.image = imageLink;
+      const imageLink = await uploadImage(image);
+      console.log(imageLink);
+      event.image = imageLink;
       const addEvent = await fetch("/api/setevent", {
         method: "POST",
         headers: {

@@ -8,9 +8,8 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
 
   return (
     <Box
-      maxW="xs"
+      w={["unset", "xs"]}
       bg="white"
-      // bgGradient="linear(to-r, #e5d6ff, #cbfcf8)"
       rounded="lg"
       mt={10}
       mx={["unset", 4]}
