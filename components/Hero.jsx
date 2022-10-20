@@ -6,74 +6,72 @@ import {
   Text,
   Button,
   Icon,
-  Image
+  Img,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
-
 export default function Hero() {
   const router = useRouter();
   return (
-    <Container maxW={"7xl"} >
-      <Flex justifyContent={'space-around'} alignItems='center' flexDirection={{ sm: 'column', md: 'row'}}>
-      <Flex w={"full"}>
-          <Image
-            height={{ sm: "14rem", lg: "28rem" }}
-            src={'./illustration.svg'}
-          />
-        </Flex>
-      <Stack
-        textAlign={"left"}
-        align={"left"}
-        spacing={{ base: 8, md: 10 }}
-        py={{ base: 20, md: 28 }}
+    <Container maxW={"7xl"}>
+      <Flex
+        justifyContent={"space-around"}
+        alignItems="center"
+        flexDir={["column-reverse", "column-reverse", "row"]}
       >
-        <Heading
-          fontWeight={600}
-          fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
-          lineHeight={"110%"}
-          mt={12}
+        <Flex maxW={"lg"} mr={["unset", "unset", 20]}>
+          <Img w="full" src={"illustration.svg"} />
+        </Flex>
+        <Stack
+          textAlign={"left"}
+          align={"left"}
+          spacing={{ base: 8, md: 10 }}
+          py={{ base: 0, md: 28 }}
         >
-          Register for events{" "}
-          <Text as={"span"} color={"purple.500"}>
-            with couple of clicks
-          </Text>
-        </Heading>
-        <Text color={"gray.500"} maxW={"3xl"}>
-          Tired of filling event registration form with same details? No more
-          repeating, just log-in with google and click register and your are
-          goog to go
-        </Text>
-        <Stack spacing={6} direction={"row"} textAlign={"left"}>
-          <Button
-            colorScheme="white"
-            color={"black"}
-            border="1px"
-            boxShadow="6px 6px 0px black"
-            _hover={{
-              boxShadow: "0px 0px 0px black",
-              bgColor: 'purple.500'
-            }}
-            display="inline-flex"
-            alignItems="center"
-            justifyContent="left"
-            rounded={"sm"}
-            onClick={() => {
-              router.push("/events");
-            }}
-            w={{
-              base: "full",
-              sm: "auto",
-            }}
-            size="md"
-            cursor="pointer"
+          <Heading
+            fontWeight={600}
+            fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
+            lineHeight={"110%"}
+            mt={12}
           >
-            Explore events <ArrowForwardIcon ml={2} />
-          </Button>
+            Register for events{" "}
+            <Text as={"span"} color={"purple.500"}>
+              with couple of clicks
+            </Text>
+          </Heading>
+          <Text color={"gray.500"} maxW={"3xl"}>
+            Tired of filling event registration form with same details? No more
+            repeating, just log-in with google and click register and your are
+            goog to go
+          </Text>
+          <Stack spacing={6} direction={"row"} textAlign={"left"}>
+            <Button
+              colorScheme="white"
+              color={"black"}
+              border="1px"
+              boxShadow="6px 6px 0px black"
+              _hover={{
+                boxShadow: "0px 0px 0px black",
+                bgColor: "purple.500",
+              }}
+              display="inline-flex"
+              alignItems="center"
+              rounded={"sm"}
+              onClick={() => {
+                router.push("/events");
+              }}
+              w={{
+                base: "full",
+                sm: "auto",
+              }}
+              size="md"
+              cursor="pointer"
+            >
+              Explore events <ArrowForwardIcon ml={2} />
+            </Button>
+          </Stack>
         </Stack>
-        
-      </Stack>
       </Flex>
     </Container>
   );
