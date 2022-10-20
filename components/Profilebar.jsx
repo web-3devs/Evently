@@ -1,5 +1,39 @@
 import { SmallCloseIcon } from "@chakra-ui/icons";
 import {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  Avatar,
+  AvatarBadge,
+  Box,
+  Button,
+  Center,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  Flex,
+  FormControl,
+  Heading,
+  IconButton,
+  Input,
+  Stack,
+  Text,
+  Textarea,
+  useDisclosure,
+  useToast,
+} from "@chakra-ui/react";
+import Image from "next/image";
+import { useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { allEvents } from "../context/slices/alleventsSlice";
+import { currentUser } from "../context/slices/userSlice";
+import EventCard from "../components/EventCard";
+=======
+>>>>>>> 79d1c5b (feat: image upload done)
 	Avatar,
 	AvatarBadge,
 	Box,
@@ -31,6 +65,10 @@ import { currentUser } from '../context/slices/userSlice'
 import EventCard from '../components/EventCard'
 import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen'
 import uploadImage from '../utils/uploadImage'
+<<<<<<< HEAD
+=======
+>>>>>>> 8a233a8 (feat: image upload done)
+>>>>>>> 79d1c5b (feat: image upload done)
 
 export default function Profilebar() {
   const [editProfile, seteditProfile] = useState(false);
@@ -43,6 +81,7 @@ export default function Profilebar() {
   const [previewurl, setpreviewurl] = useState("");
   console.log(user);
 
+<<<<<<< HEAD
   const [data, setData] = useState({
     name: "",
     description: "",
@@ -55,6 +94,26 @@ export default function Profilebar() {
     date: null,
     user_id: "",
   });
+=======
+	useEffect(() => {
+		return setpreviewurl('');
+	},[])
+
+	const [data, setData] = useState({
+		name: '',
+		description: '',
+		user_id: '',
+	})
+
+	const [event, setEvent] = useState({
+		name: '',
+		description: '',
+		date: null,
+		created_by: '',
+		username: '',
+		image:''
+	})
+>>>>>>> 8a233a8 (feat: image upload done)
 
   const handleChange = (e) => {
     const key = e.target.name;
@@ -66,6 +125,7 @@ export default function Profilebar() {
     }
   };
 
+<<<<<<< HEAD
   const handleSubmit = async () => {
     if (editProfile) {
       console.log(user.currentUser?.id);
@@ -129,6 +189,72 @@ export default function Profilebar() {
       }
     }
   };
+=======
+	const handleSubmit = async () => {
+		if (editProfile) {
+			console.log(user.currentUser?.id)
+			data.user_id = user.currentUser?.id
+			const update = await fetch('/api/updateprofile', {
+				method: 'PUT',
+				headers: {
+					'Content-type': 'application/json',
+				},
+				body: JSON.stringify(data),
+			})
+			const updatedData = await update.json()
+			if (update.ok) {
+				dispacth(currentUser(updatedData.user))
+				toast({
+					title: 'Profile updated succesfully.',
+					status: 'success',
+					position: 'top',
+					duration: 5000,
+					isClosable: true,
+				})
+			} else {
+				toast({
+					title: 'Some errored occured !',
+					status: 'error',
+					position: 'top',
+					duration: 5000,
+					isClosable: true,
+				})
+			}
+		} else {
+			event.created_by = user.currentUser?.email
+			event.username = user.currentUser?.name
+			const imageLink = await uploadImage(image)
+			console.log(imageLink)
+			event.image = imageLink;
+			const addEvent = await fetch('/api/setevent', {
+				method: 'POST',
+				headers: {
+					'Content-type': 'application/json ',
+				},
+				body: JSON.stringify(event),
+			})
+			const eventData = await addEvent.json()
+			if (addEvent.ok) {
+				dispacth(allEvents(eventData.event))
+				toast({
+					title: 'event added succesfully.',
+					status: 'success',
+					position: 'top',
+					duration: 5000,
+					isClosable: true,
+				})
+			} else {
+				toast({
+					title: 'Some errored occured !',
+					status: 'error',
+					position: 'top',
+					duration: 5000,
+					isClosable: true,
+				})
+			}
+		}
+	}
+>>>>>>> 8a233a8 (feat: image upload done)
 
   return (
     <Flex
