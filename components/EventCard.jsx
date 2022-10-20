@@ -24,11 +24,14 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
 				fit='cover'
 				mb={2}
 				roundedTop='lg'
-				src={'BootcampWeb3Devs.png'}
+				src={image ? image : 'BootcampWeb3Devs.png'}
 				alt={''}
 				// borderBottom={'1px solid'}
 			/>
-			<Box p={4} minH={52}>
+			<Box
+				p={4}
+				minH={52}
+			>
 				<Flex
 					mb={2}
 					alignItems='center'
@@ -68,7 +71,7 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
 					size='md'
 					cursor='pointer'
 					_hover={{
-						boxShadow:'0px 0px 0px black'
+						boxShadow: '0px 0px 0px black',
 					}}
 					onClick={() => {
 						router.push(`/event/${index}`)

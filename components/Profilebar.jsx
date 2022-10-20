@@ -23,10 +23,12 @@ import {
 	useDisclosure,
 	useToast,
 } from '@chakra-ui/react'
+import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { allEvents } from '../context/slices/alleventsSlice'
 import { currentUser } from '../context/slices/userSlice'
+import EventCard from '../components/EventCard'
 
 export default function Profilebar() {
 	const [editProfile, seteditProfile] = useState(false)
@@ -35,7 +37,8 @@ export default function Profilebar() {
 	const drawer = useRef()
 	const dispacth = useDispatch()
 	const toast = useToast()
-
+	const [image, setImage] = useState(null)
+	const [previewurl, setpreviewurl] = useState('')
 	console.log(user)
 
 	const [data, setData] = useState({
@@ -321,6 +324,30 @@ export default function Profilebar() {
 									name='date'
 									onChange={handleChange}
 								/>
+								<Input
+									placeholder='Select Image event'
+									size={'md'}
+									type='file'
+									onChange={(e) => {
+										setImage(e.target.files[0])
+										setpreviewurl(
+											URL.createObjectURL(
+												e.target.files[0]
+											)
+										)
+									}}
+								/>
+								{previewurl && (
+									<Image
+										src={previewurl}
+										width={'52'}
+										height={'200'}
+										style={{
+											marginBlock: 2,
+											borderRadius: 8,
+										}}
+									/>
+								)}
 							</Stack>
 						)}
 					</DrawerBody>
