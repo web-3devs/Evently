@@ -24,11 +24,13 @@ import {
 	useToast,
 } from '@chakra-ui/react'
 import Image from 'next/image'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { allEvents } from '../context/slices/alleventsSlice'
 import { currentUser } from '../context/slices/userSlice'
 import EventCard from '../components/EventCard'
+import { Cloudinary, CloudinaryImage } from '@cloudinary/url-gen'
+import uploadImage from '../utils/uploadImage'
 
 export default function Profilebar() {
 	const [editProfile, seteditProfile] = useState(false)
@@ -40,6 +42,10 @@ export default function Profilebar() {
 	const [image, setImage] = useState(null)
 	const [previewurl, setpreviewurl] = useState('')
 	console.log(user)
+
+	useEffect(() => {
+		return setpreviewurl('');
+	},[])
 
 	const [data, setData] = useState({
 		name: '',
@@ -53,6 +59,7 @@ export default function Profilebar() {
 		date: null,
 		created_by: '',
 		username: '',
+		image:''
 	})
 
 	const handleChange = (e) => {
@@ -98,6 +105,9 @@ export default function Profilebar() {
 		} else {
 			event.created_by = user.currentUser?.email
 			event.username = user.currentUser?.name
+			const imageLink = await uploadImage(image)
+			console.log(imageLink)
+			event.image = imageLink;
 			const addEvent = await fetch('/api/setevent', {
 				method: 'POST',
 				headers: {
