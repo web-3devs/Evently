@@ -12,6 +12,16 @@ import { useRouter } from "next/router";
 import React from "react";
 import { useSelector } from "react-redux";
 import convertDate, { getTime } from "../../utils/formatDate";
+
+export async function getServerSideProps() {
+	const fetchAllEvents = await fetch('/api/getallevents')
+	const eventsdata = await fetchAllEvents.json()
+
+	return {
+		props: { eventsdata },
+	}
+}
+
 function EventDetail() {
   const router = useRouter();
   const { id } = router.query;

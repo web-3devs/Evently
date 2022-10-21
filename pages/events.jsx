@@ -12,14 +12,6 @@ import { useSelector } from 'react-redux'
 import EventCard from '../components/EventCard'
 import EventSkleton from '../components/EventSkleton'
 
-export async function getServerSideProps() {
-	const fetchAllEvents = await fetch('/api/getallevents')
-	const eventsdata = await fetchAllEvents.json()
-
-	return {
-		props: { eventsdata },
-	}
-}
 
 export default function Events() {
 	const alleventsdata = useSelector((state) => state.allEvents)
