@@ -4,10 +4,12 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { currentUser } from "../context/slices/userSlice";
 import { allEvents } from "../context/slices/alleventsSlice";
+import { useToast } from "@chakra-ui/react";
 
 export default function Layout({ children }) {
   const { user, error, isLoading } = useUser();
   const dispatch = useDispatch();
+  const toast = useToast();
 
   const setUser = async () => {
     const data = await fetch("/api/setuser", {
@@ -22,7 +24,24 @@ export default function Layout({ children }) {
       }),
     });
     const UserData = await data.json();
-    return UserData;
+    if (!data.ok) {
+      toast({
+        title: "Something went wrong!!",
+        status: "error",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {
+      dispatch(currentUser(UserData.user));
+      toast({
+        title: "Logged in succesfully.",
+        status: "success",
+        position: "top",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
   };
 
   const getAllEvents = async () => {
@@ -34,12 +53,10 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     getAllEvents();
-    if (!!user) {
-      setUser().then((res) => {
-        dispatch(currentUser(res.user));
-      });
+    if (!isLoading) {
+      setUser();
     }
-  }, [user]);
+  }, [isLoading]);
 
   return (
     <>
