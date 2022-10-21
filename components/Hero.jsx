@@ -26,10 +26,12 @@ export default function Hero() {
         <Flex
           justifyContent={"space-around"}
           alignItems="center"
-          flexDir={["column-reverse", "column-reverse", "row"]}
+          flexDir={["column", "column", "row"]}
+          pb={8}
         >
           <Flex maxW={"lg"} mr={["unset", "unset", 20]}>
-            <Img w="full" src={"illustration.svg"} />
+            <Img w="full" display={{ base: "block", md: "none"}} src={"mob-illustration.svg"} />
+            <Img w="full" display={{ base: "none", md: "block"}} src={"illustration.svg"} />
           </Flex>
           <Stack
             textAlign={"left"}
@@ -53,7 +55,7 @@ export default function Hero() {
               more repeating, just log-in with google and click register and
               your are goog to go
             </Text>
-            <Stack spacing={6} direction={"row"} textAlign={"left"}>
+            <Stack spacing={6} direction={"row"} textAlign={"left"} px={{base: 4, md: 0}}>
               <Button
                 colorScheme="white"
                 color={"black"}
@@ -71,7 +73,7 @@ export default function Hero() {
                 }}
                 w={{
                   base: "full",
-                  sm: "auto",
+                  md: "auto",
                 }}
                 size="md"
                 cursor="pointer"

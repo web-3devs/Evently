@@ -30,6 +30,7 @@ export default function Navbar() {
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Img
             h={"32"}
+            ml={{base: '-12px', md: '0'}}
             src="logo.svg"
             onClick={() => {
               router.push("/");
@@ -101,7 +102,7 @@ export default function Navbar() {
                 router.push("/api/auth/login");
               }}
               w={{
-                base: "full",
+                base: 28,
                 sm: "auto",
               }}
               size="md"
