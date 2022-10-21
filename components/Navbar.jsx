@@ -11,13 +11,36 @@ import {
   Container,
   Text,
   Img,
+  useToast,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { deleteUser } from '../context/slices/userSlice'
 
 export default function Navbar() {
+  const dispacth = useDispatch();
+  const toast = useToast();
   const user = useSelector((state) => state.userData);
   const router = useRouter();
+  const handleDelete = async() =>{
+    const data = {user_id : user.currentUser?.id};
+    const deleted = await fetch('/api/deleteProfile', {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(data),})
+    const deletedData = await deleted.json();
+    console.log(deletedData);
+    dispacth(deleteUser());
+    toast({
+      title: 'Profile deleted succesfully.',
+      status: 'success',
+      position: 'top',
+      duration: 5000,
+      isClosable: true,
+    })
+  }
 
   return (
     <Box
@@ -75,12 +98,24 @@ export default function Navbar() {
                       router.push("/api/auth/logout");
                     }}
                     p={3}
-                    roundedBottom="lg"
                     _hover={{
                       bg: "purple.400",
                     }}
                   >
                     Signout
+                  </MenuItem>
+                  <MenuDivider m={0} />
+                  <MenuItem
+                    onClick={() => {
+                      handleDelete()
+                    }}
+                    p={3}
+                    roundedBottom="lg"
+                    _hover={{
+                      bg: "purple.400",
+                    }}
+                  >
+                    Delete Account
                   </MenuItem>
                 </MenuList>
               </Menu>
