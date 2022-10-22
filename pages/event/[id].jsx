@@ -13,11 +13,11 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import convertDate, { getTime } from '../../utils/formatDate'
 
-function EventDetail() {
+export default function id() {
+	const currentEvent = useSelector((state) => state.allEvents)
 	const router = useRouter()
 	const id = router.query
-	const currentEvent = useSelector((state) => state.allEvents)
-	const eventdata = currentEvent.allEvents[parseInt(id?.id)]
+	const eventdata = currentEvent.allEvents[id?.id]
 	return (
 		<Container maxW={'container.xl'}>
 			<Box mt={[6, 12]}>
@@ -132,4 +132,3 @@ function EventDetail() {
 	)
 }
 
-export default EventDetail
