@@ -15,9 +15,9 @@ import convertDate, { getTime } from '../../utils/formatDate'
 
 function EventDetail() {
 	const router = useRouter()
-	const { id } = router.query
+	const id = router.query
 	const currentEvent = useSelector((state) => state.allEvents)
-	const eventdata = currentEvent.allEvents[parseInt(id)]
+	const eventdata = currentEvent.allEvents[parseInt(id?.id)]
 	return (
 		<Container maxW={'container.xl'}>
 			<Box mt={[6, 12]}>
