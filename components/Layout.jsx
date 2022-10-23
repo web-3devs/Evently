@@ -55,7 +55,9 @@ export default function Layout({ children }) {
 	useEffect(() => {
 		getAllEvents()
 		if (!isLoading) {
-			setUser()
+			if (user){
+        setUser();
+      }
 		}
 	}, [isLoading])
 

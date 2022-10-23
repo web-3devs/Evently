@@ -36,12 +36,15 @@ export default function Navbar() {
     const deletedData = await deleted.json();
     if (!deletedData.ok) {
       toast({
-        title: "Something went wrong!!",
-        status: "error",
+        title: "Profile deleted succesfully.",
+        status: "success",
         position: "top",
         duration: 5000,
         isClosable: true,
       });
+      console.log(deletedData);
+      dispacth(deleteUser());
+      router.push("/api/auth/logout");
     } else {
       dispacth(deleteUser());
       toast({
