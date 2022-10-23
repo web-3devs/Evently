@@ -13,7 +13,7 @@ CREATE TABLE "events" (
 
 -- CreateTable
 CREATE TABLE "participants" (
-    "id" UUID NOT NULL,
+    "id" UUID NOT NULL DEFAULT uuid_generate_v4(),
     "created_at" TIMESTAMPTZ(6) DEFAULT CURRENT_TIMESTAMP,
     "name" VARCHAR,
     "email" VARCHAR NOT NULL,

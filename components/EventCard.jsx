@@ -5,8 +5,6 @@ import convertDate from '../utils/formatDate'
 import Link from 'next/link'
 
 export default function EventCard({ id, name, desc, image, date, posted }) {
-	const router = useRouter()
-
 	return (
 		<Box
 			w={['unset', 'xs']}

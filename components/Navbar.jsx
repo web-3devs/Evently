@@ -22,6 +22,7 @@ export default function Navbar() {
   const toast = useToast();
   const user = useSelector((state) => state.userData);
   const router = useRouter();
+  console.log(user);
 
   const handleDelete = async () => {
     const data = { user_id: user.currentUser?.id };

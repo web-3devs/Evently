@@ -47,6 +47,7 @@ export default function Layout({ children }) {
 	const getAllEvents = async () => {
 		const fetchAllEvents = await fetch('/api/getallevents')
 		const eventsdata = await fetchAllEvents.json()
+		console.log(eventsdata);
 		if (!fetchAllEvents.ok) return
 		dispatch(allEvents(eventsdata.events))
 	}

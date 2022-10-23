@@ -7,6 +7,7 @@ import {
 	HStack,
 	Img,
 	Text,
+	useToast,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import React from 'react'
@@ -14,10 +15,51 @@ import { useSelector } from 'react-redux'
 import convertDate, { getTime } from '../../utils/formatDate'
 
 export default function id() {
-	const currentEvent = useSelector((state) => state.allEvents)
 	const router = useRouter()
-	const id = router.query
-	const eventdata = currentEvent.allEvents[id?.id]
+  const toast = useToast()
+
+	const { id } = router.query
+	const currentEvent = useSelector((state) => state.allEvents)
+	const user = useSelector((state) => state.userData)
+	const eventdata = currentEvent.allEvents[id]
+	console.log(eventdata)
+	async function registerForEvent() {
+		try {
+			const body = {
+				email: user.currentUser?.email,
+				name: user.currentUser?.name,
+				event_id: eventdata.id,
+			}
+			const addparticipent = await fetch('/api/addpartcipent', {
+				method: 'post',
+				headers: {
+					'Content-type': 'application/json ',
+				},
+				body: JSON.stringify(body),
+			})
+			if (addparticipent.status === 406) {
+				toast({
+					title: 'You already registered for event',
+					status: 'warning',
+					position: 'top',
+					duration: 3000,
+					isClosable: true,
+				})	
+			}
+			if (addparticipent.ok) {
+				toast({
+					title: 'Succesfully registered for event',
+					status: 'success',
+					position: 'top',
+					duration: 4000,
+					isClosable: true,
+				})	
+			}
+		} catch (err) {
+			console.log(err.name);
+		}
+	}
+
 	return (
 		<Container maxW={'container.xl'}>
 			<Box mt={[6, 12]}>
@@ -50,6 +92,9 @@ export default function id() {
 							rounded={'sm'}
 							size='lg'
 							cursor='pointer'
+							onClick={() => {
+								registerForEvent()
+							}}
 							_hover={{
 								bg: 'purple.600',
 							}}
@@ -131,4 +176,3 @@ export default function id() {
 		</Container>
 	)
 }
-
