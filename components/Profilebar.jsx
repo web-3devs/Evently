@@ -100,7 +100,6 @@ export default function Profilebar() {
     } else {
       event.user_id = user.currentUser?.id;
       const imageLink = await uploadImage(image);
-      console.log(imageLink);
       event.image = imageLink;
       const addEvent = await fetch("/api/setevent", {
         method: "POST",

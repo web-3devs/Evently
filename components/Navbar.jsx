@@ -22,7 +22,6 @@ export default function Navbar() {
   const toast = useToast();
   const user = useSelector((state) => state.userData);
   const router = useRouter();
-  console.log(user);
 
   const handleDelete = async () => {
     const data = { user_id: user.currentUser?.id };
@@ -42,7 +41,6 @@ export default function Navbar() {
         duration: 5000,
         isClosable: true,
       });
-      console.log(deletedData);
       dispacth(deleteUser());
       router.push("/api/auth/logout");
     } else {

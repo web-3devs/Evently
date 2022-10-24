@@ -1,4 +1,5 @@
 import {
+  Center,
   Flex,
   Heading,
   Tab,
@@ -13,8 +14,6 @@ import EventCard from "./EventCard";
 export default function ProfileEvents() {
   const alleventsdata = useSelector((state) => state.allEvents);
   const user = useSelector((state) => state.userData);
-
-  console.log(user, alleventsdata);
 
   return (
     <Tabs isFitted variant="unstyled" border={"1px"} rounded="md" mb={10}>
