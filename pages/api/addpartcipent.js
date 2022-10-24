@@ -4,24 +4,29 @@ export default async function handler(req, res) {
 	if (req.method === 'POST') {
 		try {
 			const { email, name, event_id } = req.body
+			console.log(email)
 			const alreadyRegsitered = await prisma.participants.findMany({
 				select: {
 					email: true,
 				},
 				where: {
-					event_id: event_id,
+					email: email,
+					event_id,
 				},
 			})
 			if (alreadyRegsitered.length === 1) {
 				res.status(406).json({ message: 'You already registered' })
 				return
 			}
-			console.log('hio')
 			await prisma.participants.create({
 				data: {
 					name: name,
 					email: email,
-					event_id: event_id,
+					events: {
+						connect: {
+							id: event_id,
+						},
+					},
 				},
 			})
 			res.status(200).json({})

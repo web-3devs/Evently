@@ -10,19 +10,31 @@ import {
 	useToast,
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import convertDate, { getTime } from '../../utils/formatDate'
 
 export default function id() {
 	const router = useRouter()
-  const toast = useToast()
-
+	const toast = useToast()
 	const { id } = router.query
 	const currentEvent = useSelector((state) => state.allEvents)
 	const user = useSelector((state) => state.userData)
 	const eventdata = currentEvent.allEvents[id]
-	console.log(eventdata)
+	console.log(eventdata.participants)
+
+	const [isRegistered, setIsRegistered] = useState(false)
+
+	function checkForRegistered() {
+		for (let i = 0; i < eventdata?.participants.length; i++) {
+			if (eventdata?.participants[i].email === user.currentUser?.email)
+				setIsRegistered(true)
+		}
+	}
+
+	useEffect(() => {
+		checkForRegistered()
+	}, [])
 	async function registerForEvent() {
 		try {
 			const body = {
@@ -44,7 +56,7 @@ export default function id() {
 					position: 'top',
 					duration: 3000,
 					isClosable: true,
-				})	
+				})
 			}
 			if (addparticipent.ok) {
 				toast({
@@ -53,10 +65,10 @@ export default function id() {
 					position: 'top',
 					duration: 4000,
 					isClosable: true,
-				})	
+				})
 			}
 		} catch (err) {
-			console.log(err.name);
+			console.log(err.name)
 		}
 	}
 
@@ -91,6 +103,7 @@ export default function id() {
 							boxShadow='6px 6px 0px black'
 							rounded={'sm'}
 							size='lg'
+							disabled={isRegistered}
 							cursor='pointer'
 							onClick={() => {
 								registerForEvent()
@@ -99,7 +112,11 @@ export default function id() {
 								bg: 'purple.600',
 							}}
 						>
-							Register now
+							{isRegistered ? (
+								<>Already Registered</>
+							) : (
+								<>Register now</>
+							)}
 						</Button>
 					</Box>
 					<Box
