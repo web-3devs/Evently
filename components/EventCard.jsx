@@ -5,6 +5,7 @@ import convertDate from "../utils/formatDate";
 import Link from "next/link";
 
 export default function EventCard({ id, name, desc, image, date, posted }) {
+  const router = useRouter();
   return (
     <Box
       w={["full", "xs"]}
@@ -40,7 +41,6 @@ export default function EventCard({ id, name, desc, image, date, posted }) {
         <Text fontSize="sm" color="gray.600" noOfLines={1} textAlign="justify">
           {desc}
         </Text>
-        <Link href={`/event/${encodeURIComponent(id)}`}>
           <Button
             colorScheme="purple"
             my={4}
@@ -54,10 +54,12 @@ export default function EventCard({ id, name, desc, image, date, posted }) {
             _hover={{
               boxShadow: "0px 0px 0px black",
             }}
+            onClick={() => {
+              router.push(`/event/${id}`);
+            }}
           >
             View More
           </Button>
-        </Link>
       </Box>
     </Box>
   );
