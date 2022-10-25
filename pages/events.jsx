@@ -25,8 +25,8 @@ export default function Events() {
               bg: "purple.500",
               border: 0,
             }}
-            roundedTopLeft={"md"}
-            roundedBottomLeft={"md"}
+            roundedTopLeft={"sm"}
+            roundedBottomLeft={"sm"}
           >
             Upcoming Events
           </Tab>
@@ -37,8 +37,8 @@ export default function Events() {
               bg: "purple.500",
               border: 0,
             }}
-            roundedTopRight={"md"}
-            roundedBottomRight={"md"}
+            roundedTopRight={"sm"}
+            roundedBottomRight={"sm"}
           >
             Previous Events
           </Tab>
