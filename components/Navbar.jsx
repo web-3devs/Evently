@@ -75,7 +75,12 @@ export default function Navbar() {
           />
           {user.authenticated ? (
             <Flex alignItems={"center"}>
-              <Text mr="4" fontSize={"md"} fontWeight="medium">
+              <Text
+                mr="4"
+                fontSize={"md"}
+                fontWeight="medium"
+                display={["none", "block"]}
+              >
                 {user.currentUser?.name}
               </Text>
               <Menu>

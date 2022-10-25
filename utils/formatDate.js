@@ -24,6 +24,6 @@ export default convertDate;
 
 const getTime = (timestamp) => {
   const dateObj = new Date(timestamp);
-  return `${dateObj.getHours()} ${dateObj.getMinutes()}`;
+  return `${dateObj.getHours()}:${dateObj.getMinutes()}`;
 };
 export { getTime };
