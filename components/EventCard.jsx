@@ -7,11 +7,11 @@ import Link from 'next/link'
 export default function EventCard({ id, name, desc, image, date, posted }) {
 	return (
 		<Box
-			w={['unset', 'xs']}
+			w={['full', 'xs']}
 			bg='white'
 			rounded='lg'
 			mt={10}
-			mx={['unset', 4]}
+			mx={['2', 4]}
 			border='1px'
 			boxShadow='6px 6px 0px black'
 		>
