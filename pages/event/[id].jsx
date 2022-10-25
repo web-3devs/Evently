@@ -84,7 +84,8 @@ export default function EventDetail() {
   }
 
   return (
-    <Container maxW={"container.xl"}>
+    id && (
+		<Container maxW={"container.xl"}>
       <Box mt={[6, 12]}>
         <Box h="72">
           <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} />
@@ -205,5 +206,6 @@ export default function EventDetail() {
         </Flex>
       </Box>
     </Container>
+	)
   );
 }
