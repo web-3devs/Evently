@@ -319,10 +319,12 @@ export default function Profilebar() {
                   onChange={handleChange}
                 />
                 <HStack>
-                  <Text>Type : {event.type}</Text>
+                  <Text color={event.type === "Offline" ? "black" : "gray.500"}>
+                    Offline
+                  </Text>
                   <Switch
-                    colorScheme={"twitter"}
-                    size="lg"
+                    colorScheme={"purple"}
+                    size="md"
                     onChange={(e) => {
                       if (e.target.checked) {
                         setEvent({
@@ -337,6 +339,9 @@ export default function Profilebar() {
                       }
                     }}
                   />
+                  <Text color={event.type === "Online" ? "black" : "gray.500"}>
+                    Online
+                  </Text>
                 </HStack>
                 <Input
                   placeholder="Select Image event"
