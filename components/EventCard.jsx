@@ -4,31 +4,15 @@ import { useRouter } from "next/router";
 import convertDate from "../utils/formatDate";
 import Link from "next/link";
 
-<<<<<<< HEAD
-export default function EventCard({ id, name, desc, image, date, posted }) {
+export default function EventCard({ index, name, desc, image, date, posted }) {
   const router = useRouter();
-=======
-export default function EventCard({
-  index,
-  name,
-  desc,
-  image,
-  date,
-  posted,
-  origin,
-}) {
->>>>>>> dbfcb23 (Test on prod)
   return (
     <Box
       w={["full", "xs"]}
       bg="white"
       rounded="lg"
       mt={10}
-<<<<<<< HEAD
       mx={[2, 4]}
-=======
-      mx={["2", 4]}
->>>>>>> dbfcb23 (Test on prod)
       border="1px"
       boxShadow="6px 6px 0px black"
     >
