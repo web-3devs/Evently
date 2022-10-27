@@ -44,6 +44,17 @@ export default function EventDetail() {
   }, []);
 
   async function registerForEvent() {
+    if (!user.authenticated) {
+      toast({
+        title: "Please Login to register",
+        status: "error",
+        position: "top",
+        duration: 4000,
+        isClosable: true,
+      });
+      return;
+    }
+
     try {
       setIsloading(true);
       const body = {
