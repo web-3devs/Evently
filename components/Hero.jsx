@@ -11,84 +11,88 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
+import Navbar from "./Navbar";
 
 export default function Hero() {
   const router = useRouter();
   return (
-    <Box
-      bgImage={"mesh.svg"}
-      bgRepeat={"no-repeat"}
-      bgSize={"cover"}
-      bgAttachment={"fixed"}
-      minH="calc(100vh - 64px)"
-    >
-      <Container maxW={"7xl"}>
-        <Flex
-          justifyContent={"space-around"}
-          alignItems="center"
-          flexDir={["column-reverse", "column-reverse", "row"]}
-          pb={8}
-        >
-          <Flex maxW={"lg"} mr={["unset", "unset", 20]}>
-            <Img w="full" src={"mob-illustration.svg"} />
-          </Flex>
-          <Stack
-            textAlign={"left"}
-            align={"left"}
-            spacing={{ base: 8, md: 10 }}
-            py={{ base: 0, md: 28 }}
+    <>
+      <Box
+        bgImage={"/Mesh.svg"}
+        bgRepeat={"no-repeat"}
+        bgPosition={"top"}
+        bgSize={"cover"}
+        bgAttachment={"fixed"}
+        minH="calc(100vh - 64px)"
+      >
+        <Container maxW={"7xl"}>
+          <Flex
+            justifyContent={"space-around"}
+            alignItems="center"
+            flexDir={["column-reverse", "column-reverse", "row"]}
+            pb={8}
           >
-            <Heading
-              fontWeight={600}
-              fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
-              lineHeight={"110%"}
-              mt={[6, 12]}
-            >
-              Register for events{" "}
-              <Text as={"span"} color={"purple.500"}>
-                with couple of clicks
-              </Text>
-            </Heading>
-            <Text color={"gray.500"} maxW={"3xl"}>
-              Tired of filling event registration form with same details? No
-              more repeating, just log-in with google and click register and
-              your are goog to go
-            </Text>
+            <Flex maxW={"lg"} mr={["unset", "unset", 20]}>
+              <Img w="full" src={"mob-illustration.svg"} />
+            </Flex>
             <Stack
-              spacing={6}
-              direction={"row"}
               textAlign={"left"}
-              px={{ base: 4, md: 0 }}
+              align={"left"}
+              spacing={{ base: 8, md: 10 }}
+              py={{ base: 0, md: 28 }}
             >
-              <Button
-                colorScheme="white"
-                color={"black"}
-                border="1px"
-                boxShadow="6px 6px 0px black"
-                _hover={{
-                  boxShadow: "0px 0px 0px black",
-                  bgColor: "purple.500",
-                }}
-                display="inline-flex"
-                alignItems="center"
-                rounded={"sm"}
-                onClick={() => {
-                  router.push("/events");
-                }}
-                w={{
-                  base: "full",
-                  md: "auto",
-                }}
-                size="md"
-                cursor="pointer"
+              <Heading
+                fontWeight={600}
+                fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
+                lineHeight={"110%"}
+                mt={[6, 12]}
               >
-                Explore events <ArrowForwardIcon ml={2} />
-              </Button>
+                Register for events{" "}
+                <Text as={"span"} color={"purple.500"}>
+                  with couple of clicks
+                </Text>
+              </Heading>
+              <Text color={"gray.500"} maxW={"3xl"}>
+                Tired of filling event registration form with same details? No
+                more repeating, just log-in with google and click register and
+                your are goog to go
+              </Text>
+              <Stack
+                spacing={6}
+                direction={"row"}
+                textAlign={"left"}
+                px={{ base: 4, md: 0 }}
+              >
+                <Button
+                  colorScheme="white"
+                  color={"black"}
+                  border="1px"
+                  boxShadow="6px 6px 0px black"
+                  _hover={{
+                    boxShadow: "0px 0px 0px black",
+                    bgColor: "purple.500",
+                  }}
+                  display="inline-flex"
+                  alignItems="center"
+                  rounded={"sm"}
+                  onClick={() => {
+                    router.push("/events");
+                  }}
+                  w={{
+                    base: "full",
+                    md: "auto",
+                  }}
+                  size="md"
+                  cursor="pointer"
+                >
+                  Explore events <ArrowForwardIcon ml={2} />
+                </Button>
+              </Stack>
             </Stack>
-          </Stack>
-        </Flex>
-      </Container>
-    </Box>
+          </Flex>
+        </Container>
+      </Box>
+    </>
   );
 }
 

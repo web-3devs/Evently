@@ -58,7 +58,8 @@ export default function Navbar() {
   return (
     <Box
       px={4}
-      bgImg={router.pathname === "/" ? "mesh.svg" : "transparent"}
+      bgImg={router.pathname === "/" ? "/Mesh.svg" : "transparent"}
+      bgColor={ "transparent"}
       bgRepeat={"no-repeat"}
       bgSize={"cover"}
     >

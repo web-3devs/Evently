@@ -31,7 +31,11 @@ export default function EventDetail() {
   const eventdata = currentEvent.allEvents[id];
   const [isRegistered, setIsRegistered] = useState(false);
   const [isloading, setIsloading] = useState(false);
-  console.log(eventdata?.participants);
+
+  if (router.isFallback) {
+    return <Container>Loading</Container>;
+  }
+
   function checkForRegistered() {
     for (let i = 0; i < eventdata?.participants.length; i++) {
       if (eventdata?.participants[i].email === user.currentUser?.email)

@@ -45,7 +45,7 @@ export default function ProfileEvents() {
         <TabPanel>
           <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
             {alleventsdata?.allEvents?.map((item, index) =>
-              user.currentUser.id === item.created_by ? (
+              user.currentUser?.id === item.created_by ? (
                 <EventCard
                   key={item.id}
                   index={index}

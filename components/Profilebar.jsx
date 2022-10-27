@@ -384,7 +384,8 @@ export default function Profilebar() {
               border={"1px"}
               rounded="sm"
               color={"black"}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 handleSubmit();
                 onClose();
               }}
