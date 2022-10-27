@@ -61,7 +61,7 @@ export default function Events() {
                     return (
                       <EventCard
                         key={item.id}
-                        id={index}
+                        index={index}
                         name={item.name}
                         desc={item.description}
                         image={item.image}
