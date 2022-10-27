@@ -59,7 +59,7 @@ export default function Navbar() {
     <Box
       px={4}
       bgImg={router.pathname === "/" ? "/Mesh.svg" : "transparent"}
-      bgColor={ "transparent"}
+      bgColor={"transparent"}
       bgRepeat={"no-repeat"}
       bgSize={"cover"}
     >
@@ -68,7 +68,7 @@ export default function Navbar() {
           <Img
             h={"32"}
             ml={{ base: "-12px", md: "0" }}
-            src="logo.svg"
+            src="/logo.svg"
             onClick={() => {
               router.push("/");
             }}

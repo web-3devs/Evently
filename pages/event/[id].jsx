@@ -45,7 +45,7 @@ export default function EventDetail() {
 
   useEffect(() => {
     checkForRegistered();
-  }, []);
+  });
 
   async function registerForEvent() {
     if (!user.authenticated) {

@@ -6,6 +6,7 @@ import Link from "next/link";
 
 export default function EventCard({ index, name, desc, image, date, posted }) {
   const router = useRouter();
+
   return (
     <Box
       w={["full", "xs"]}
@@ -26,8 +27,7 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
         alt={""}
         borderBottom={"1px"}
       />
-
-      <Box px={4} py={2} minH={52}>
+      <Box px={4} py={2} minH={40}>
         {date ? (
           <Flex mb={2} alignItems="center">
             <CalendarIcon />
@@ -39,7 +39,7 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
         <Heading color="gray.800" fontWeight="bold" fontSize="2xl">
           {name}
         </Heading>
-        <Text fontSize="sm" color="gray.600" noOfLines={2} textAlign="justify">
+        <Text fontSize="sm" color="gray.600" noOfLines={1} textAlign="justify">
           {desc}
         </Text>
         <Link href={`/event/${encodeURIComponent(index)}`}>

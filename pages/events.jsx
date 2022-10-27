@@ -14,6 +14,7 @@ import EventSkleton from "../components/EventSkleton";
 
 export default function Events() {
   const alleventsdata = useSelector((state) => state.allEvents);
+
   return (
     <Container maxW={"container.xl"} p={0}>
       <Tabs isFitted variant="unstyled">
@@ -46,7 +47,7 @@ export default function Events() {
         <TabPanels>
           <TabPanel>
             <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
-              {!alleventsdata ? (
+              {!alleventsdata.allEvents ? (
                 <>
                   <EventSkleton />
                   <EventSkleton />
