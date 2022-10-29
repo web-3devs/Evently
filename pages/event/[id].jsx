@@ -6,12 +6,23 @@ import {
   Flex,
   Heading,
   HStack,
+  Icon,
+  IconButton,
   Img,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Spinner,
   Text,
+  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
 import { unset } from "lodash";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -24,6 +35,7 @@ export async function getServerSideProps() {
 }
 
 export default function EventDetail() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const router = useRouter();
   const toast = useToast();
   const { id } = router.query;
@@ -106,21 +118,6 @@ export default function EventDetail() {
     }
   }
 
-  async function shareEvent() {
-    if (navigator.share) {
-      navigatorI
-        .share({
-          title: `Attending ${eventdata?.name}`,
-          text: `I am attending ${eventdata?.name},`,
-          url: "https://evently.vercel.app",
-        })
-        .then(() => console.log("Successful share"))
-        .catch((error) => console.log("Error sharing", error));
-    } else {
-      console.error("Browser doesn't support Web Share API");
-    }
-  }
-
   return (
     <Container maxW={"container.xl"}>
       <Box mt={[6, 12]}>
@@ -195,18 +192,51 @@ export default function EventDetail() {
               colorScheme="white"
               color={"black"}
               border="1px"
-              boxShadow="6px 6px 0px black"
+              boxShadow="3px 3px 0px black"
               rounded={"sm"}
               size="lg"
               cursor="pointer"
-              onClick={() => {
-                shareEvent();
-              }}
-              _hover={{
-                bg: "purple.600",
-              }}
+              onClick={onOpen}
             >
-              Share Event
+              <HStack justifyContent={"center"} alignItems={"center"}  gap={4}>
+              <Text>Share Via</Text>
+                <a
+                  rel="noopener noreferer"
+                  target={"_blank"}
+                  href={`https://twitter.com/compose/tweet/?text=I am attending ${eventdata?.name}, Don't forgot to register at Evetly\n Register now:https://evently-delta.vercel.app  `}
+                >
+                  <Image
+                    src="/twitter-logo.svg"
+                    height={38}
+                    width={38}
+                    objectFit={"contain"}
+                  />
+                </a>
+                <a
+                  rel="noopener noreferer"
+                  target={"_blank"}
+                  href={`mailto:?subject=Attend ${eventdata?.name}&body=I am attending ${eventdata?.name}, Don't forgot to register at Evetly\n Register now:https://evently-delta.vercel.app `}
+                >
+                  <Image
+                    src="/gmail.png"
+                    height={35}
+                    width={35}
+                    objectFit={"contain"}
+                  />
+                </a>
+                <a
+                  rel="noopener noreferer"
+                  target={"_blank"}
+                  href={`whatsapp://send?text=I am attending ${eventdata?.name}, Don't forgot to register at Evetly\n Register now:https://evently-delta.vercel.app  `}
+                >
+                  <Image
+                    src="/WhatsApp.svg.png"
+                    height={35}
+                    width={35}
+                    objectFit={"contain"}
+                  />
+                </a>
+              </HStack>
             </Button>
           </Box>
           <Box
