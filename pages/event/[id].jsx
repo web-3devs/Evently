@@ -11,6 +11,7 @@ import {
   Text,
   useToast,
 } from "@chakra-ui/react";
+import { unset } from "lodash";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -105,6 +106,21 @@ export default function EventDetail() {
     }
   }
 
+  async function shareEvent() {
+    if (navigator.share) {
+      navigatorI
+        .share({
+          title: `Attending ${eventdata?.name}`,
+          text: `I am attending ${eventdata?.name},`,
+          url: "https://evently.vercel.app",
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      console.error("Browser doesn't support Web Share API");
+    }
+  }
+
   return (
     <Container maxW={"container.xl"}>
       <Box mt={[6, 12]}>
@@ -171,6 +187,27 @@ export default function EventDetail() {
                 )}
               </Button>
             )}
+            <Button
+              my={6}
+              mx={[0, null, 4]}
+              width={["full", "auto"]}
+              px={8}
+              colorScheme="white"
+              color={"black"}
+              border="1px"
+              boxShadow="6px 6px 0px black"
+              rounded={"sm"}
+              size="lg"
+              cursor="pointer"
+              onClick={() => {
+                shareEvent();
+              }}
+              _hover={{
+                bg: "purple.600",
+              }}
+            >
+              Share Event
+            </Button>
           </Box>
           <Box
             w={"xs"}
