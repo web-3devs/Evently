@@ -11,7 +11,7 @@ async function uploadImage(FILE) {
     }
   );
   const jsondata = await res.json();
-  return jsondata.url;
+  return jsondata.url.slice(0,82)+"webp";
 }
 
 export default uploadImage;
