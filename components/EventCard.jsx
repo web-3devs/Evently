@@ -56,6 +56,9 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
             _hover={{
               boxShadow: "0px 0px 0px black",
             }}
+            onTouchEndCapture={() => {
+              router.push(`/event/${index}`);
+            }}
           >
             View More
           </Button>

@@ -103,6 +103,18 @@ export default function EventDetail() {
           duration: 4000,
           isClosable: true,
         });
+        let bodyoptions = {
+          sendTo: user.currentUser?.email,
+          user_name: user.currentUser?.name,
+          event_name: eventdata?.name,
+        };
+        let mail = await fetch("/api/sendmail", {
+          method: "POST",
+          headers: {
+          "Content-type": "application/json ",
+        },
+          body: JSON.stringify(bodyoptions),
+        });
       }
     } catch (err) {
       console.log(err.name);
@@ -198,8 +210,8 @@ export default function EventDetail() {
               cursor="pointer"
               onClick={onOpen}
             >
-              <HStack justifyContent={"center"} alignItems={"center"}  gap={4}>
-              <Text>Share Via</Text>
+              <HStack justifyContent={"center"} alignItems={"center"} gap={4}>
+                <Text>Share Via</Text>
                 <a
                   rel="noopener noreferer"
                   target={"_blank"}
@@ -228,6 +240,7 @@ export default function EventDetail() {
                   rel="noopener noreferer"
                   target={"_blank"}
                   href={`whatsapp://send?text=I am attending ${eventdata?.name}, Don't forgot to register at Evetly\n Register now:https://evently-delta.vercel.app  `}
+                  data-action="share/whatsapp/share"
                 >
                   <Image
                     src="/WhatsApp.svg.png"
