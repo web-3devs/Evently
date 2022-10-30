@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 				res.status(406).json({ message: 'You already registered' })
 				return
 			}
-			await prisma.participants.create({
+			const participent_data = await prisma.participants.create({
 				data: {
 					name: name,
 					email: email,
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
 					},
 				},
 			})
-			res.status(200).json({})
+			res.status(200).json({ participent_data })
 		} catch (error) {
 			console.log(error)
 			res.status(400).json({ error })

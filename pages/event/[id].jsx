@@ -21,6 +21,7 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
+import { m } from "framer-motion";
 import { unset } from "lodash";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -111,10 +112,19 @@ export default function EventDetail() {
         let mail = await fetch("/api/sendmail", {
           method: "POST",
           headers: {
-          "Content-type": "application/json ",
-        },
+            "Content-type": "application/json ",
+          },
           body: JSON.stringify(bodyoptions),
         });
+        if (mail.ok) {
+          toast({
+            title: "An Email has been sent to your mail",
+            status: "success",
+            position: "top",
+            duration: 4000,
+            isClosable: true,
+          });
+        }
       }
     } catch (err) {
       console.log(err.name);
