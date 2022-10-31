@@ -5,9 +5,7 @@ export default async function handler(req, res) {
 		res.status(200).json({ message: 'Method not allowed' })
 		return
 	}
-	const { sendTo, event_name, user_name } = req.body
-
-	console.log(sendTo + 'send mail')
+	const { sendTo, participent_id, user_name } = req.body
 
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
@@ -16,22 +14,30 @@ export default async function handler(req, res) {
 			pass: process.env.MAIL_PASSWORD,
 		},
 	})
-	let img = await getQRCode(user_name, sendTo)
+	const QR_CODE_URI = await generateQRCode(user_name, participent_id)
+
 	const mailOptions = {
 		from: '"Web3Devs" <contactweb3devs@gmail.com>',
 		to: sendTo,
-		subject: `Your seat is confirmed for ${event_name}`,
+		subject: `[Web3Devs] You are in`,
 		template: 'email',
 		attachDataUrls: true,
-		html: `<h3>Hey ${user_name},</h3><br/>
-		<h2>
-		Your seat is reserverd for ${event_name},
+		html: `<h2>Hey <b>${user_name}</b>,</h2><br/>
+		<h3>
+		<b>🎉🎉 Congratulations 🥳🥳</b>
+		Your seat is reserverd for ${event_name},<br/>
 		Here is your unique QR code for check-in purpose.<br/>
-		<img src='${img}'/>
+		<div style='width:100%,display:flex,justify-content:center,align-items:center'>
+		<img src='${QR_CODE_URI}'/>
+		</div>
 		<br/>
 		For the check-in,you need to show this QR at the venue
-		<br/>
-		</h2>
+		<pre>
+		Regards,
+		Team Web3Devs
+		</pre>
+		<h6>If you have any queries you can contact us : <a href="mailto:contactweb3devs@gmail.com">Here</a></h6>
+		</h3>
         `,
 	}
 
@@ -45,12 +51,8 @@ export default async function handler(req, res) {
 	})
 }
 
-async function getQRCode(name, email) {
-	console.log('in qr')
-	const data = {
-		name: name,
-		email: email,
-	}
-	let img = await QRCode.toDataURL(JSON.stringify(data))
+async function generateQRCode(name, participent_id) {
+	const data = { participent_id: participent_id, name: name }
+	const img = await QRCode.toDataURL(JSON.stringify(data))
 	return img
 }

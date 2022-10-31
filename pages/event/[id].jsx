@@ -104,10 +104,11 @@ export default function EventDetail() {
           duration: 4000,
           isClosable: true,
         });
+        const p_data = await addparticipent.json();
         let bodyoptions = {
           sendTo: user.currentUser?.email,
           user_name: user.currentUser?.name,
-          event_name: eventdata?.name,
+          participent_id: p_data.id,
         };
         let mail = await fetch("/api/sendmail", {
           method: "POST",
