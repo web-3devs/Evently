@@ -16,7 +16,7 @@ export const userSlice = createSlice({
     },
     deleteUser: (state, action) => {
       state.authenticated = false;
-      state.currentUser = null
+      state.currentUser = null;
     },
     allUsers: (state, action) => {
       state.allUsers = action.payload;

@@ -15,6 +15,8 @@ export default function ProfileEvents() {
   const alleventsdata = useSelector((state) => state.allEvents);
   const user = useSelector((state) => state.userData);
 
+  console.log(alleventsdata);
+
   return (
     <Tabs isFitted variant="unstyled" border={"1px"} rounded="md" mb={10}>
       <TabList>

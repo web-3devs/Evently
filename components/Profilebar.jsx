@@ -28,7 +28,7 @@ import {
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { allEvents } from "../context/slices/alleventsSlice";
+import { addNewEvent, allEvents } from "../context/slices/alleventsSlice";
 import { currentUser } from "../context/slices/userSlice";
 import uploadImage from "../utils/uploadImage";
 
@@ -110,7 +110,7 @@ export default function Profilebar() {
       });
       const eventData = await addEvent.json();
       if (addEvent.ok) {
-        dispacth(allEvents(eventData.event));
+        dispacth(addNewEvent(eventData.event));
         toast({
           title: "event added succesfully.",
           status: "success",
