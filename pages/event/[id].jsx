@@ -51,11 +51,11 @@ export default function EventDetail() {
   }
 
   function checkForRegistered() {
-    // for (let i = 0; i < eventdata?.participants.length; i++) {
-    //   if (eventdata?.participants[i].email === user.currentUser?.email)
-    //     setIsRegistered(true);
-    // }
-    console.log(eventdata);
+    for (let i = 0; i < eventdata?.participants.length; i++) {
+      if (eventdata?.participants[i].email === user.currentUser?.email)
+        setIsRegistered(true);
+    }
+    // console.log(eventdata);
   }
 
   useEffect(() => {
