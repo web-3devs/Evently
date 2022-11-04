@@ -51,19 +51,8 @@ export default async function handler(req, res) {
   });
 }
 
-<<<<<<< HEAD
-async function getQRCode(name, email) {
-  console.log("in qr");
-  const data = {
-    name: name,
-    email: email,
-  };
-  let img = await QRCode.toDataURL(JSON.stringify(data));
-  return img;
-=======
 async function generateQRCode(name, participent_id) {
 	const data = { participent_id: participent_id, name: name }
 	const img = await QRCode.toDataURL(JSON.stringify(data))
 	return img
->>>>>>> 564489f7f8d8e1c8c12e0544daf2a5ae5404449d
 }
