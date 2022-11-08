@@ -1,5 +1,5 @@
-import nodemailer from "nodemailer";
-import QRCode from "qrcode";
+import nodemailer from 'nodemailer'
+import QRCode from 'qrcode'
 export default async function handler(req, res) {
 	if (!req.method === 'POST') {
 		res.status(200).json({ message: 'Method not allowed' })
@@ -14,15 +14,10 @@ export default async function handler(req, res) {
 			pass: process.env.MAIL_PASSWORD,
 		},
 	})
+
 	const QR_CODE_URI = await generateQRCode(user_name, participent_id)
 
-	const mailOptions = {
-		from: '"Web3Devs" <contactweb3devs@gmail.com>',
-		to: sendTo,
-		subject: `[Web3Devs] You are in`,
-		template: 'email',
-		attachDataUrls: true,
-		html: `<h2>Hey <b>${user_name}</b>,</h2><br/>
+	const EMAIL_TEMPLATE = `<h2>Hey <b>${user_name}</b>,</h2><br/>
 		<h3>
 		<b>🎉🎉 Congratulations 🥳🥳</b>
 		Your seat is reserverd for ${event_name},<br/>
@@ -38,17 +33,25 @@ export default async function handler(req, res) {
 		</pre>
 		<h6>If you have any queries you can contact us : <a href="mailto:contactweb3devs@gmail.com">Here</a></h6>
 		</h3>
-        `,
-  };
+        `
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      res.status(400).json({ message: "failed" });
-      return console.log(error);
-    }
-    console.log("Message sent: " + info.response);
-    res.status(200).json({ message: "Email Sent" });
-  });
+	const mailOptions = {
+		from: '"Web3Devs" <contactweb3devs@gmail.com>',
+		to: sendTo,
+		subject: `[Web3Devs] You are in`,
+		template: 'email',
+		attachDataUrls: true,
+		html: EMAIL_TEMPLATE,
+	}
+
+	transporter.sendMail(mailOptions, function (error, info) {
+		if (error) {
+			res.status(400).json({ message: 'failed' })
+			return console.log(error)
+		}
+		console.log('Message sent: ' + info.response)
+		res.status(200).json({ message: 'Email Sent' })
+	})
 }
 
 async function generateQRCode(name, participent_id) {
