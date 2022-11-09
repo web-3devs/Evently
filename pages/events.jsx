@@ -1,7 +1,6 @@
 import {
   Container,
   Flex,
-  Heading,
   Tab,
   TabList,
   TabPanel,
@@ -17,7 +16,8 @@ export default function Events() {
   const alleventsdata = useSelector((state) => state.allEvents);
   let pastEvents = [];
   let upcomigEvents = [];
-  const segegrateEvents = alleventsdata.allEvents.map((item) => {
+
+  alleventsdata.allEvents.map((item) => {
     let current_date = new Date();
     let event_date = new Date(item.date_time);
     event_date > current_date
