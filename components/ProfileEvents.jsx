@@ -14,9 +14,14 @@ import EventCard from "./EventCard";
 export default function ProfileEvents() {
   const alleventsdata = useSelector((state) => state.allEvents);
   const user = useSelector((state) => state.userData);
-
-  console.log(alleventsdata);
-
+  let attendedEvents = [];
+  alleventsdata?.allEvents?.map((event) => {
+    event?.participants?.map((participent) => {
+      if (participent?.email === user?.currentUser?.email) {
+        attendedEvents.push(event);
+      }
+    });
+  });
   return (
     <Tabs isFitted variant="unstyled" border={"1px"} rounded="md" mb={10}>
       <TabList>
@@ -62,7 +67,22 @@ export default function ProfileEvents() {
           </Flex>
         </TabPanel>
         <TabPanel>
-          <Heading>Attened</Heading>
+          <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
+            {attendedEvents?.map((item, index) => {
+              return (
+                <EventCard
+                  key={item.id}
+                  index={index}
+                  name={item.name}
+                  desc={item.description}
+                  image={item.image}
+                  date={item.date_time}
+                  posted={item.created_at}
+                  isCompleted
+                />
+              );
+            })}
+          </Flex>
         </TabPanel>
       </TabPanels>
     </Tabs>
