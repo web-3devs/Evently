@@ -68,7 +68,7 @@ export default function Events() {
                 </>
               ) : (
                 <>
-                  {upcomigEvents.map((item, index) => {
+                  {upcomigEvents?.map((item, index) => {
                     return (
                       <EventCard
                         key={item.id}
@@ -98,7 +98,7 @@ export default function Events() {
                 </>
               ) : (
                 <>
-                  {pastEvents.map((item, index) => {
+                  {pastEvents?.map((item, index) => {
                     return (
                       <EventCard
                         key={item.id}
