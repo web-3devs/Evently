@@ -88,6 +88,7 @@ export default function EventDetail() {
         },
         body: JSON.stringify(body),
       });
+      const p_data = await addparticipent.json();
       if (addparticipent.status === 406) {
         toast({
           title: "You already registered for event",
@@ -105,11 +106,11 @@ export default function EventDetail() {
           duration: 4000,
           isClosable: true,
         });
-        const p_data = await addparticipent.json();
         let bodyoptions = {
           sendTo: user.currentUser?.email,
           user_name: user.currentUser?.name,
-          participent_id: p_data.id,
+          participent_id: p_data.participent_data.id,
+          event_name: eventdata?.name,
         };
         let mail = await fetch("/api/sendmail", {
           method: "POST",

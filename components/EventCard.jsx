@@ -4,7 +4,15 @@ import { useRouter } from "next/router";
 import convertDate from "../utils/formatDate";
 import Link from "next/link";
 
-export default function EventCard({ index, name, desc, image, date, posted }) {
+export default function EventCard({
+  index,
+  name,
+  desc,
+  image,
+  date,
+  posted,
+  isCompleted,
+}) {
   const router = useRouter();
 
   return (
@@ -42,7 +50,29 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
         <Text fontSize="sm" color="gray.600" noOfLines={1} textAlign="justify">
           {desc}
         </Text>
-        <Link href={`/event/${encodeURIComponent(index)}`}>
+        {!isCompleted ? (
+          <Link href={`/event/${encodeURIComponent(index)}`}>
+            <Button
+              colorScheme="purple"
+              mt={4}
+              color={"white"}
+              border="1px black"
+              boxShadow="6px 6px 0px black"
+              rounded={"sm"}
+              size="md"
+              w="full"
+              cursor="pointer"
+              _hover={{
+                boxShadow: "0px 0px 0px black",
+              }}
+              onTouchEndCapture={() => {
+                router.push(`/event/${index}`);
+              }}
+            >
+              View More
+            </Button>
+          </Link>
+        ) : (
           <Button
             colorScheme="purple"
             mt={4}
@@ -56,13 +86,11 @@ export default function EventCard({ index, name, desc, image, date, posted }) {
             _hover={{
               boxShadow: "0px 0px 0px black",
             }}
-            onTouchEndCapture={() => {
-              router.push(`/event/${index}`);
-            }}
+            disabled
           >
-            View More
+            Event done
           </Button>
-        </Link>
+        )}
       </Box>
     </Box>
   );

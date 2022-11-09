@@ -8,12 +8,22 @@ import {
   TabPanels,
   Tabs,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import EventCard from "../components/EventCard";
 import EventSkleton from "../components/EventSkleton";
 
 export default function Events() {
   const alleventsdata = useSelector((state) => state.allEvents);
+  let pastEvents = [];
+  let upcomigEvents = [];
+  const segegrateEvents = alleventsdata.allEvents.map((item) => {
+    let current_date = new Date();
+    let event_date = new Date(item.date_time);
+    event_date > current_date
+      ? upcomigEvents.push(item)
+      : pastEvents.push(item);
+  });
 
   return (
     <Container maxW={"container.xl"} p={0}>
@@ -58,7 +68,7 @@ export default function Events() {
                 </>
               ) : (
                 <>
-                  {alleventsdata.allEvents?.map((item, index) => {
+                  {upcomigEvents.map((item, index) => {
                     return (
                       <EventCard
                         key={item.id}
@@ -76,7 +86,35 @@ export default function Events() {
             </Flex>
           </TabPanel>
           <TabPanel>
-            <Heading>Previous</Heading>
+            <Flex flexWrap={"wrap"} justifyContent="center" pb={10}>
+              {!alleventsdata.allEvents ? (
+                <>
+                  <EventSkleton />
+                  <EventSkleton />
+                  <EventSkleton />
+                  <EventSkleton />
+                  <EventSkleton />
+                  <EventSkleton />
+                </>
+              ) : (
+                <>
+                  {pastEvents.map((item, index) => {
+                    return (
+                      <EventCard
+                        key={item.id}
+                        index={index}
+                        name={item.name}
+                        desc={item.description}
+                        image={item.image}
+                        date={item.date_time}
+                        posted={item.created_at}
+                        isCompleted
+                      />
+                    );
+                  })}
+                </>
+              )}
+            </Flex>
           </TabPanel>
         </TabPanels>
       </Tabs>
