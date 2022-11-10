@@ -139,25 +139,29 @@ export default function EventDetail() {
   return (
     <Container maxW={"5xl"}>
       <Box mt={[6, 12]}>
-        <Box h="72">
-          <Img src={eventdata?.image} w="full" h="full" objectFit={"cover"} />
+        <Box w={'full'} h='52' bg={"purple.400"} borderTopRadius={'md'}>
         </Box>
-        <Box mt={4}>
-          <Flex color={'purple.500'}>
-            <Img src={'/calendar.svg'} w={6} h={6} mr={2}/>
-            <Text>Thu, 17 Nov, 10:00 - 17:00 GMT+5:30</Text>
-          </Flex>
-          <Flex>
-            <Img src={'/locate.svg'} w={6} h={6} mr={2}/>
-            <Text>Nirma University, Sarkhej - Gandhinagar Hwy, Gota, Ahmedabad, Gujarat 382481, India</Text>
-          </Flex>
-        </Box>
-        <Flex px="4" py="12" justifyContent={"space-between"} flexWrap="wrap">
+        <Flex>
+          <Box h="sm" w="md" mt={'-48'} ml={8}>
+            <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} />
+          </Box>
+          <Box mt={8} ml={8}>
+            <Flex alignItems='center'>
+              <Img src={'/calendar.svg'} w={8} h={8} mr={2} />
+              <Text fontSize={'lg'}>Thu, 17 Nov, 10:00 - 17:00 GMT+5:30</Text>
+            </Flex>
+            <Flex mt={4} alignItems={'center'}>
+              <Img src={'/locate.svg'} w={8} h={8} mr={2} />
+              <Text fontSize={'lg'}>Nirma University, Sarkhej - Gandhinagar Hwy, Gota, Ahmedabad, Gujarat 382481, India</Text>
+            </Flex>
+          </Box>
+        </Flex>
+        <Flex px="4" py="12" justifyContent={"space-between"}>
 
           <Box w={"3xl"}>
-            <Text fontWeight={'bold'}>Event Details</Text>
-            <Heading fontWeight={'bold'}>{eventdata?.name}</Heading>
-            <Text textAlign={"justify"}>{eventdata?.description}</Text>
+            <Text fontWeight={500} fontSize={'xl'}>Event Details</Text>
+            <Text fontWeight={'bold'} fontSize={'4xl'}>{eventdata?.name}</Text>
+            <Text textAlign={"justify"} fontSize={'lg'}>{eventdata?.description}</Text>
             {isRegistered ? (
               <Button
                 my={6}
@@ -189,7 +193,7 @@ export default function EventDetail() {
                 boxShadow="6px 6px 0px black"
                 rounded={"sm"}
                 size="lg"
-                disabled={isloading || !isDone}
+                disabled={isloading}
                 cursor="pointer"
                 onClick={() => {
                   registerForEvent();
