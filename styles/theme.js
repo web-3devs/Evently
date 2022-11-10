@@ -1,4 +1,27 @@
-import { extendTheme } from "@chakra-ui/react";
+import { switchAnatomy } from "@chakra-ui/anatomy";
+import { createMultiStyleConfigHelpers, extendTheme } from "@chakra-ui/react";
+const {
+  definePartsStyle,
+  defineMultiStyleConfig,
+} = createMultiStyleConfigHelpers(switchAnatomy.keys);
+
+const baseStyle = definePartsStyle({
+  container: {
+    border: "1px",
+  },
+  thumb: {
+    bg: "black",
+    borderRadius: "none",
+  },
+  track: {
+    bg: "white",
+    borderRadius: "sm",
+    _checked: {
+      bg: "transparent",
+    },
+  },
+});
+const switchTheme = defineMultiStyleConfig({ baseStyle });
 
 const config = {
   defaultColorMode: "light",
@@ -15,7 +38,7 @@ const theme = extendTheme({
     global: {
       "html, body": {
         scrollBehavior: "smooth",
-        // backgroundColor: "orange.100"
+        // backgroundColor: "#F5EFE6",
       },
       "&::-webkit-scrollbar": {
         width: "1",
@@ -32,6 +55,14 @@ const theme = extendTheme({
   },
   config,
   fonts,
+  components: {
+    Switch: switchTheme,
+    Button: {
+      baseStyle: {
+        borderRadius: "sm",
+      },
+    },
+  },
 });
 
 export default theme;
