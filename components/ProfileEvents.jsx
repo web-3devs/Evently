@@ -16,8 +16,8 @@ export default function ProfileEvents() {
   const user = useSelector((state) => state.userData);
   let attendedEvents = [];
   alleventsdata?.allEvents?.map((event) => {
-    event?.participants?.map((participent) => {
-      if (participent?.email === user?.currentUser?.email) {
+    event?.participants?.map((participant) => {
+      if (participant?.email === user?.currentUser?.email) {
         attendedEvents.push(event);
       }
     });

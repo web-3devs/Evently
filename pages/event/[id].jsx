@@ -10,6 +10,7 @@ import {
   Text,
   useDisclosure,
   useToast,
+  Avatar
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -142,7 +143,7 @@ export default function EventDetail() {
         <Box w={'full'} h='52' bg={"purple.400"} borderTopRadius={'md'}>
         </Box>
         <Flex>
-          <Box h="80" w="md" mt={'-36'} ml={8}>
+          <Box h="xs" w="sm" mt={'-36'} ml={8} bgColor={'#bdb2ff'} borderRadius={4}>
             <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} />
           </Box>
           <Box mt={8} ml={8}>
@@ -158,17 +159,162 @@ export default function EventDetail() {
         </Flex>
         <Flex px="4" py="12" justifyContent={"space-between"}>
 
-          <Box w={"3xl"}>
+          <Box minW={'md'} maxW={'lg'} >
             <Text fontWeight={500} fontSize={'xl'} borderBottom={'4px'} borderColor={'purple.400'} w={'fit-content'}>Event Details</Text>
             <Heading fontWeight={'bold'} fontSize={'5xl'} mt={2}>{eventdata?.name}</Heading>
             <Text textAlign={"justify"} fontSize={'2xl'} my={2}>{eventdata?.description}</Text>
-            <Text fontWeight={500} fontSize={'xl'} mt={4}>Share</Text>
-            <Button
+            
+            {isRegistered ? (
+              <Button
+                mb={8}
+                mt={4}
+                px={8}
+                colorScheme="black"
+                color={"black"}
+                border="1px"
+                boxShadow="6px 6px 0px black"
+                rounded={"sm"}
+                size="lg"
+                disabled={isRegistered}
+                cursor="pointer"
+                bg={'purple.400'}
+                onClick={() => {
+                  registerForEvent();
+                }}
+                _hover={{
+                  bg: "purple.200",
+                }}
+              >
+                <>Already Registered</>
+              </Button>
+            ) : (
+              <Button
+                mb={8}
+                px={8}
+                mt={4}
+                colorScheme="black"
+                color={"black"}
+                border="1px"
+                boxShadow="6px 6px 0px black"
+                rounded={"sm"}
+                size="lg"
+                disabled={isloading}
+                cursor="pointer"
+                onClick={() => {
+                  registerForEvent();
+                }}
+                _hover={{
+                  bg: "purple.200",
+                }}
+                bg={'purple.400'}
+              >
+                {isloading ? (
+                  <>
+                    <Spinner
+                      thickness="2px"
+                      speed="0.75s"
+                      emptyColor="gray.200"
+                      color="white"
+                      size="md"
+                    />
+                    <Text mx={2}>Registering...</Text>
+                  </>
+                ) : (
+                  <>Register Now</>
+                )}
+              </Button>
+            )}
+          </Box>
+          <Box >
+            
+            <Box
+              w={"xs"}
+              bg="white"
+              ml={["unset"]}
+              rounded="lg"
+              border="1px"
+              borderColor={'purple.400'}
+              p="4"
+              h={"max-content"}
+              textAlign={'left'}
+            >
+              <Box py="2" borderBottom={"4px"} borderColor={'purple.400'}>
+                <Heading fontSize={"2xl"}>Organizer</Heading>
+              </Box>
+              <HStack mt={4}>
+              <Box w="16">
+              <Avatar
+                    size={"md"}
+                    src={user.currentUser?.image}
+                    name={user.currentUser?.name}
+                  />
+                  </Box>
+                  <Text fontSize={"xl"} fontWeight={500}>Host Name</Text>
+              </HStack>
+              {/* <HStack mt={4}>
+                <Box w="24">
+                  <Text fontSize={"md"} fontWeight="semibold">
+                    Type
+                  </Text>
+                </Box>
+                <Text fontSize={"md"}>Offline</Text>
+              </HStack>
+              <HStack mt={4}>
+                <Box w="24">
+                  <Text fontSize={"md"} fontWeight="semibold">
+                    Date
+                  </Text>
+                </Box>
+                <Text fontSize={"md"}>
+                  {eventdata?.date_time
+                    ? convertDate(eventdata?.date_time)
+                    : null}
+                </Text>
+              </HStack>
+              <HStack mt={4}>
+                <Box w="24">
+                  <Text fontSize={"md"} fontWeight="semibold">
+                    Time
+                  </Text>
+                </Box>
+                <Text fontSize={"md"}>
+                  {eventdata?.date_time ? getTime(eventdata?.date_time) : null}
+                </Text>
+              </HStack>
+              <HStack mt={4}>
+                <Box w="24">
+                  <Text fontSize={"md"} fontWeight="semibold">
+                    Venue
+                  </Text>
+                </Box>
+                <Text fontSize={"md"}>Something</Text>
+              </HStack> */}
+            </Box>
+            <Box
+              w={"xs"}
+              bg="white"
+              mt={4}
+              ml={["unset"]}
+              rounded="lg"
+              border="1px"
+              borderColor={'purple.400'}
+              p="4"
+              h={"max-content"}
+              textAlign={'left'}
+            >
+              <Heading fontSize={"2xl"} borderBottom={'4px'} borderColor={'purple.400'} py={2}>Share</Heading>
+            <Flex mt={2}>
+              <Image src='/instagram.svg' height={44} width={44}/>
+              <Image src='/linkedin.svg' height={44} width={44}/>
+              <Image src='/whatsapp.svg' height={44} width={44}/>
+            </Flex>
+            </Box>
+            {/* <Button
               cursor="pointer"
               onClick={onOpen}
+              mt={4}
             >
               <HStack justifyContent={"center"} alignItems={"center"} gap={4}>
-                <Text>Share Via</Text>
                 <a
                   rel="noopener noreferer"
                   target={"_blank"}
@@ -207,121 +353,7 @@ export default function EventDetail() {
                   />
                 </a>
               </HStack>
-            </Button>
-          </Box>
-          <Box textAlign={'right'}>
-          {isRegistered ? (
-              <Button
-                mb={8}
-                px={8}
-                colorScheme="black"
-                color={"black"}
-                border="1px"
-                boxShadow="6px 6px 0px black"
-                rounded={"sm"}
-                size="lg"
-                disabled={isRegistered}
-                cursor="pointer"
-                bg={'purple.400'}
-                onClick={() => {
-                  registerForEvent();
-                }}
-                _hover={{
-                  bg: "purple.200",
-                }}
-              >
-                <>Already Registered</>
-              </Button>
-            ) : (
-              <Button
-                mb={8}
-                px={8}
-                colorScheme="black"
-                color={"black"}
-                border="1px"
-                boxShadow="6px 6px 0px black"
-                rounded={"sm"}
-                size="lg"
-                disabled={isloading}
-                cursor="pointer"
-                onClick={() => {
-                  registerForEvent();
-                }}
-                _hover={{
-                  bg: "purple.200",
-                }}
-                bg={'purple.400'}
-              >
-                {isloading ? (
-                  <>
-                    <Spinner
-                      thickness="2px"
-                      speed="0.75s"
-                      emptyColor="gray.200"
-                      color="white"
-                      size="md"
-                    />
-                    <Text mx={2}>Registering...</Text>
-                  </>
-                ) : (
-                  <>Register Now</>
-                )}
-              </Button>
-            )}
-            <Box
-            w={"xs"}
-            bg="white"
-            ml={["unset"]}
-            rounded="lg"
-            border="1px"
-            borderColor={'purple.400'}
-            boxShadow="6px 6px 0px #9f79ea"
-            p="4"
-            h={"max-content"}
-            textAlign={'left'}
-          >
-            <Box py="2" borderBottom={"4px"} borderColor={'purple.400'}>
-              <Heading fontSize={"2xl"}>OverView</Heading>
-            </Box>
-            <HStack mt={4}>
-              <Box w="24">
-                <Text fontSize={"md"} fontWeight="semibold">
-                  Type
-                </Text>
-              </Box>
-              <Text fontSize={"md"}>Offline</Text>
-            </HStack>
-            <HStack mt={4}>
-              <Box w="24">
-                <Text fontSize={"md"} fontWeight="semibold">
-                  Date
-                </Text>
-              </Box>
-              <Text fontSize={"md"}>
-                {eventdata?.date_time
-                  ? convertDate(eventdata?.date_time)
-                  : null}
-              </Text>
-            </HStack>
-            <HStack mt={4}>
-              <Box w="24">
-                <Text fontSize={"md"} fontWeight="semibold">
-                  Time
-                </Text>
-              </Box>
-              <Text fontSize={"md"}>
-                {eventdata?.date_time ? getTime(eventdata?.date_time) : null}
-              </Text>
-            </HStack>
-            <HStack mt={4}>
-              <Box w="24">
-                <Text fontSize={"md"} fontWeight="semibold">
-                  Venue
-                </Text>
-              </Box>
-              <Text fontSize={"md"}>Something</Text>
-            </HStack>
-          </Box>
+            </Button> */}
           </Box>
         </Flex>
       </Box>
