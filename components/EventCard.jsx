@@ -50,29 +50,7 @@ export default function EventCard({
         <Text fontSize="sm" color="gray.600" noOfLines={1} textAlign="justify">
           {desc}
         </Text>
-        {!isCompleted ? (
-          <Link href={`/event/${encodeURIComponent(index)}`}>
-            <Button
-              colorScheme="purple"
-              mt={4}
-              color={"white"}
-              border="1px black"
-              boxShadow="6px 6px 0px black"
-              rounded={"sm"}
-              size="md"
-              w="full"
-              cursor="pointer"
-              _hover={{
-                boxShadow: "0px 0px 0px black",
-              }}
-              onTouchEndCapture={() => {
-                router.push(`/event/${index}`);
-              }}
-            >
-              View More
-            </Button>
-          </Link>
-        ) : (
+        <Link href={`/event/${encodeURIComponent(index)}`}>
           <Button
             colorScheme="purple"
             mt={4}
@@ -86,11 +64,13 @@ export default function EventCard({
             _hover={{
               boxShadow: "0px 0px 0px black",
             }}
-            disabled
+            onTouchEndCapture={() => {
+              router.push(`/event/${index}`);
+            }}
           >
-            Event done
+            View More
           </Button>
-        )}
+        </Link>
       </Box>
     </Box>
   );

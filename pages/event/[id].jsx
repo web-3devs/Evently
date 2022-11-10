@@ -1,32 +1,20 @@
 import {
   Box,
   Button,
-  Center,
   Container,
   Flex,
   Heading,
   HStack,
-  Icon,
-  IconButton,
   Img,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
   Spinner,
   Text,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import { m } from "framer-motion";
-import { unset } from "lodash";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import convertDate, { getTime } from "../../utils/formatDate";
 
 export async function getServerSideProps() {
@@ -40,12 +28,12 @@ export default function EventDetail() {
   const router = useRouter();
   const toast = useToast();
   const { id } = router.query;
-  const currentEvent = useSelector((state) => state.allEvents);
+  const events = useSelector((state) => state.allEvents);
   const user = useSelector((state) => state.userData);
-  const eventdata = currentEvent.allEvents[id];
+  const eventdata = events.allEvents?.find((project) => project.id === id);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isloading, setIsloading] = useState(false);
-
+  const [isDone, setIsDone] = useState(false);
   if (router.isFallback) {
     return <Container>Loading</Container>;
   }
@@ -55,7 +43,6 @@ export default function EventDetail() {
       if (eventdata?.participants[i].email === user.currentUser?.email)
         setIsRegistered(true);
     }
-    // console.log(eventdata);
   }
 
   useEffect(() => {
@@ -72,6 +59,12 @@ export default function EventDetail() {
         isClosable: true,
       });
       return;
+    }
+
+    let date = new Date();
+    let eventDate = new Date(eventdata.date_time);
+    if (date > eventDate) {
+      setIsDone((prev) => !prev);
     }
 
     try {
@@ -184,7 +177,7 @@ export default function EventDetail() {
                 boxShadow="6px 6px 0px black"
                 rounded={"sm"}
                 size="lg"
-                disabled={isloading}
+                disabled={isloading || !isDone}
                 cursor="pointer"
                 onClick={() => {
                   registerForEvent();
@@ -319,52 +312,6 @@ export default function EventDetail() {
           </Box>
         </Flex>
       </Box>
-      {/* <Box border={"1px"} rounded="sm" my={4}>
-        <HStack justifyContent={"space-between"} px={[1, 5]}>
-          <Heading>All Participents</Heading>
-          <Heading>Total: {eventdata?.participants.length}</Heading>
-        </HStack>
-        <Box>
-          <HStack
-            w="full"
-            justifyContent={"center"}
-            borderBottom={"1px"}
-            borderColor={"black"}
-          >
-            <Text flex={"0.3"} fontSize={["lg", "xl"]} fontWeight={"bold"}>
-              Id
-            </Text>
-            <Text flex={"0.3"} fontSize={["lg", "xl"]} fontWeight={"bold"}>
-              name
-            </Text>
-            <Text flex={"0.3"} fontSize={["lg", "xl"]} fontWeight={"bold"}>
-              email
-            </Text>
-          </HStack>
-          {eventdata?.participants.map((item, index) => (
-            <ListItem id={index} name={item.name} email={item.email} />
-          ))}
-        </Box>
-      </Box> */}
     </Container>
   );
 }
-
-const ListItem = ({ id, name, email }) => (
-  <HStack w={"full"} justifyContent={"center"}>
-    <Text
-      flex={["0.1", "0.3"]}
-      mx={1}
-      fontSize={["sm", "xl"]}
-      fontWeight={"bold"}
-    >
-      {id + 1}
-    </Text>
-    <Text flex={["1", "0.3"]} fontSize={["sm", "xl"]} fontWeight={"bold"}>
-      {name}
-    </Text>
-    <Text flex={["1", "0.3"]} fontSize={["sm", "xl"]} fontWeight={"bold"}>
-      {email}
-    </Text>
-  </HStack>
-);

@@ -55,7 +55,7 @@ export default function ProfileEvents() {
               user.currentUser?.id === item.created_by ? (
                 <EventCard
                   key={item.id}
-                  index={index}
+                  index={item.id}
                   name={item.name}
                   desc={item.description}
                   image={item.image}
@@ -72,7 +72,7 @@ export default function ProfileEvents() {
               return (
                 <EventCard
                   key={item.id}
-                  index={index}
+                  index={item.id}
                   name={item.name}
                   desc={item.description}
                   image={item.image}

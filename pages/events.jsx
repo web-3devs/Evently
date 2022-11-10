@@ -72,12 +72,13 @@ export default function Events() {
                     return (
                       <EventCard
                         key={item.id}
-                        index={index}
+                        index={item.id}
                         name={item.name}
                         desc={item.description}
                         image={item.image}
                         date={item.date_time}
                         posted={item.created_at}
+                        item={item}
                       />
                     );
                   })}
@@ -102,7 +103,7 @@ export default function Events() {
                     return (
                       <EventCard
                         key={item.id}
-                        index={index}
+                        index={item.id}
                         name={item.name}
                         desc={item.description}
                         image={item.image}
