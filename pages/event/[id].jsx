@@ -137,14 +137,26 @@ export default function EventDetail() {
   }
 
   return (
-    <Container maxW={"container.xl"}>
+    <Container maxW={"5xl"}>
       <Box mt={[6, 12]}>
         <Box h="72">
-          <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} />
+          <Img src={eventdata?.image} w="full" h="full" objectFit={"cover"} />
+        </Box>
+        <Box mt={4}>
+          <Flex color={'purple.500'}>
+            <Img src={'/calendar.svg'} w={6} h={6} mr={2}/>
+            <Text>Thu, 17 Nov, 10:00 - 17:00 GMT+5:30</Text>
+          </Flex>
+          <Flex>
+            <Img src={'/locate.svg'} w={6} h={6} mr={2}/>
+            <Text>Nirma University, Sarkhej - Gandhinagar Hwy, Gota, Ahmedabad, Gujarat 382481, India</Text>
+          </Flex>
         </Box>
         <Flex px="4" py="12" justifyContent={"space-between"} flexWrap="wrap">
+
           <Box w={"3xl"}>
-            <Heading>{eventdata?.name}</Heading>
+            <Text fontWeight={'bold'}>Event Details</Text>
+            <Heading fontWeight={'bold'}>{eventdata?.name}</Heading>
             <Text textAlign={"justify"}>{eventdata?.description}</Text>
             {isRegistered ? (
               <Button
