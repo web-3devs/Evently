@@ -142,7 +142,7 @@ export default function EventDetail() {
         <Box w={'full'} h='52' bg={"purple.400"} borderTopRadius={'md'}>
         </Box>
         <Flex>
-          <Box h="sm" w="md" mt={'-48'} ml={8}>
+          <Box h="80" w="md" mt={'-36'} ml={8}>
             <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} />
           </Box>
           <Box mt={8} ml={8}>
@@ -159,76 +159,11 @@ export default function EventDetail() {
         <Flex px="4" py="12" justifyContent={"space-between"}>
 
           <Box w={"3xl"}>
-            <Text fontWeight={500} fontSize={'xl'}>Event Details</Text>
-            <Text fontWeight={'bold'} fontSize={'4xl'}>{eventdata?.name}</Text>
-            <Text textAlign={"justify"} fontSize={'lg'}>{eventdata?.description}</Text>
-            {isRegistered ? (
-              <Button
-                my={6}
-                px={8}
-                colorScheme="white"
-                color={"black"}
-                border="1px"
-                boxShadow="6px 6px 0px black"
-                rounded={"sm"}
-                size="lg"
-                disabled={isRegistered}
-                cursor="pointer"
-                onClick={() => {
-                  registerForEvent();
-                }}
-                _hover={{
-                  bg: "purple.600",
-                }}
-              >
-                <>Already Registered</>
-              </Button>
-            ) : (
-              <Button
-                my={6}
-                px={8}
-                colorScheme="white"
-                color={"black"}
-                border="1px"
-                boxShadow="6px 6px 0px black"
-                rounded={"sm"}
-                size="lg"
-                disabled={isloading}
-                cursor="pointer"
-                onClick={() => {
-                  registerForEvent();
-                }}
-                _hover={{
-                  bg: "purple.600",
-                }}
-              >
-                {isloading ? (
-                  <>
-                    <Spinner
-                      thickness="2px"
-                      speed="0.75s"
-                      emptyColor="gray.200"
-                      color="black"
-                      size="md"
-                    />{" "}
-                    <Text mx={2}>Registering...</Text>
-                  </>
-                ) : (
-                  <>Register Now</>
-                )}
-              </Button>
-            )}
+            <Text fontWeight={500} fontSize={'xl'} borderBottom={'4px'} borderColor={'purple.400'} w={'fit-content'}>Event Details</Text>
+            <Heading fontWeight={'bold'} fontSize={'5xl'} mt={2}>{eventdata?.name}</Heading>
+            <Text textAlign={"justify"} fontSize={'2xl'} my={2}>{eventdata?.description}</Text>
+            <Text fontWeight={500} fontSize={'xl'} mt={4}>Share</Text>
             <Button
-              my={6}
-              mx={[0, null, 4]}
-              width={["full", "auto"]}
-              px={8}
-              colorScheme="white"
-              color={"black"}
-              border="1px"
-              boxShadow="3px 3px 0px black"
-              rounded={"sm"}
-              size="lg"
               cursor="pointer"
               onClick={onOpen}
             >
@@ -274,17 +209,78 @@ export default function EventDetail() {
               </HStack>
             </Button>
           </Box>
-          <Box
+          <Box textAlign={'right'}>
+          {isRegistered ? (
+              <Button
+                mb={8}
+                px={8}
+                colorScheme="black"
+                color={"black"}
+                border="1px"
+                boxShadow="6px 6px 0px black"
+                rounded={"sm"}
+                size="lg"
+                disabled={isRegistered}
+                cursor="pointer"
+                bg={'purple.400'}
+                onClick={() => {
+                  registerForEvent();
+                }}
+                _hover={{
+                  bg: "purple.200",
+                }}
+              >
+                <>Already Registered</>
+              </Button>
+            ) : (
+              <Button
+                mb={8}
+                px={8}
+                colorScheme="black"
+                color={"black"}
+                border="1px"
+                boxShadow="6px 6px 0px black"
+                rounded={"sm"}
+                size="lg"
+                disabled={isloading}
+                cursor="pointer"
+                onClick={() => {
+                  registerForEvent();
+                }}
+                _hover={{
+                  bg: "purple.200",
+                }}
+                bg={'purple.400'}
+              >
+                {isloading ? (
+                  <>
+                    <Spinner
+                      thickness="2px"
+                      speed="0.75s"
+                      emptyColor="gray.200"
+                      color="white"
+                      size="md"
+                    />
+                    <Text mx={2}>Registering...</Text>
+                  </>
+                ) : (
+                  <>Register Now</>
+                )}
+              </Button>
+            )}
+            <Box
             w={"xs"}
             bg="white"
             ml={["unset"]}
             rounded="lg"
             border="1px"
-            boxShadow="6px 6px 0px black"
+            borderColor={'purple.400'}
+            boxShadow="6px 6px 0px #9f79ea"
             p="4"
             h={"max-content"}
+            textAlign={'left'}
           >
-            <Box py="2" borderBottom={"1px"}>
+            <Box py="2" borderBottom={"4px"} borderColor={'purple.400'}>
               <Heading fontSize={"2xl"}>OverView</Heading>
             </Box>
             <HStack mt={4}>
@@ -325,6 +321,7 @@ export default function EventDetail() {
               </Box>
               <Text fontSize={"md"}>Something</Text>
             </HStack>
+          </Box>
           </Box>
         </Flex>
       </Box>

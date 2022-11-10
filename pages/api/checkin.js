@@ -1,4 +1,4 @@
-import prisma from '../../../lib/prisma'
+import prisma from '../../lib/prisma'
 
 export default async function handler(req, res) {
 	if (req.method === 'POST') {
@@ -9,13 +9,13 @@ export default async function handler(req, res) {
 					username: true,
 					password: true,
 					event_id: true,
+					events: true,
 				},
 				where: {
 					username: username,
-					password: password,
+					password,
 				},
 			})
-
 			if (isFound) {
 				res.status(200).json({ isFound })
 			} else {
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
 			}
 		} catch (error) {
 			console.log(error)
-			res.status(400).json({ error })
+			res.status(400).json({ error: error })
 		}
 	} else {
 		res.status(200).json({ message: 'Method not allowed' })
