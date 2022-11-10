@@ -9,10 +9,11 @@ export default async function handler(req, res) {
 					username: true,
 					password: true,
 					event_id: true,
+					events: true,
 				},
 				where: {
 					username: username,
-					password: password,
+					password,
 				},
 			})
 			if (isFound) {
