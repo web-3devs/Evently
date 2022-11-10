@@ -109,6 +109,7 @@ export default function Profilebar() {
         body: JSON.stringify(event),
       });
       const eventData = await addEvent.json();
+      console.log(eventData);
       if (addEvent.ok) {
         dispacth(addNewEvent(eventData.event));
         toast({
@@ -118,6 +119,45 @@ export default function Profilebar() {
           duration: 5000,
           isClosable: true,
         });
+        let headersList = {
+          Accept: "*/*",
+          "Content-Type": "application/json",
+        };
+
+        let bodyContent = JSON.stringify({
+          event_id: eventData.event.id,
+          email: user.currentUser?.email,
+        });
+
+        let response = await fetch("http://localhost:3000/api/generatecred", {
+          method: "POST",
+          body: bodyContent,
+          headers: headersList,
+        });
+
+        let id_pass = await response.json();
+        console.log(id_pass);
+        let creddata = {
+          sendTo: user.currentUser?.email,
+          user_name: user.currentUser?.name,
+          event_name: eventData.event.name,
+          pass: id_pass.data.password,
+        };
+        let mailresponse = await fetch("http://localhost:3000/api/sendcred", {
+          method: "POST",
+          body: JSON.stringify(creddata),
+          headers: headersList,
+        });
+        if (mailresponse.ok) {
+          toast({
+          title: "An email has been sent to your mail",
+          status: "success",
+          position: "top",
+          duration: 5000,
+          isClosable: true,
+        });
+        }
+        
       } else {
         toast({
           title: "Some errored occured !",
