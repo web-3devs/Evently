@@ -151,7 +151,7 @@ export default function EventDetail() {
               <Img src={'/calendar.svg'} w={8} h={8} mr={2} />
               <Text fontSize={'lg'}>Thu, 17 Nov, 10:00 - 17:00 GMT+5:30</Text>
             </Flex>
-            <Flex mt={4} alignItems={'center'}>
+            <Flex mt={4} alignItems={'start'}>
               <Img src={'/locate.svg'} w={8} h={8} mr={2} />
               <Text fontSize={'lg'}>Nirma University, Sarkhej - Gandhinagar Hwy, Gota, Ahmedabad, Gujarat 382481, India</Text>
             </Flex>
