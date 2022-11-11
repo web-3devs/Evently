@@ -32,12 +32,14 @@ export default function EventDetail() {
   const events = useSelector((state) => state.allEvents);
   const user = useSelector((state) => state.userData);
   console.log(user)
-  const allUser = user?.allUser;
+  const allUser = user?.allUsers;
   console.log(allUser)
   const eventdata = events.allEvents?.find((project) => project.id === id);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isloading, setIsloading] = useState(false);
   const [isDone, setIsDone] = useState(false);
+  const [organizerName, setOrganizerName] = useState('');
+  const [organizerImg, setOrganizerImg] = useState(null);
   if (router.isFallback) {
     return <Container>Loading</Container>;
   }
@@ -49,8 +51,18 @@ export default function EventDetail() {
     }
   }
 
+  function organizerInfo(){
+    allUser?.map((user)=>{
+      if(user?.id == eventdata?.created_by){
+        setOrganizerName(user?.name);
+        setOrganizerImg(user?.image);
+      }
+
+    })
+  }
   useEffect(() => {
     checkForRegistered();
+    organizerInfo();
   });
 
   async function registerForEvent() {
@@ -249,15 +261,11 @@ export default function EventDetail() {
               <Box w="16">
               <Avatar
                     size={"md"}
-                    src={allUser?.map((user)=>{
-                      if(user?.id == eventdata?.created_by){
-                        return user?.image
-                      }
-                    })}
-                    name={user.currentUser?.name}
+                    src={organizerImg}
+                    name={organizerName}
                   />
                   </Box>
-                  <Text fontSize={"xl"} fontWeight={500}>Host Name</Text>
+                  <Text fontSize={"xl"} fontWeight={500}>{organizerName}</Text>
               </HStack>
             </Box>
             <Box
