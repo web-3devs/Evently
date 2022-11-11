@@ -10,7 +10,8 @@ import {
   Text,
   useDisclosure,
   useToast,
-  Avatar
+  Avatar,
+  Divider
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -153,15 +154,16 @@ export default function EventDetail() {
   }
 
   return (
-    <Container maxW={"5xl"}>
+    <Container maxW={"5xl"} p={0}>
       <Box mt={[6, 12]}>
         <Box w={'full'} h='52' bg={"purple.400"} borderTopRadius={'md'}>
+        <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} display={['block','none']} />
         </Box>
         <Flex>
-          <Box h="xs" w="sm" mt={'-36'} ml={8} bgColor={'#bdb2ff'} borderRadius={4}>
+          <Box h="xs" w="sm" mt={'-36'} ml={8} bgColor={'#bdb2ff'} borderRadius={4} display={['none','block']}>
             <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} />
           </Box>
-          <Box mt={8} ml={8}>
+          <Box mt={8} ml={[4,8]}>
             <Flex alignItems='center'>
               <Img src={'/calendar.svg'} w={8} h={8} mr={2} />
               <Text fontSize={'lg'}>{eventdata?.date_time? convertDate(eventdata?.date_time) : null} , {eventdata?.date_time ? getTime(eventdata?.date_time) : null}</Text>
@@ -172,12 +174,12 @@ export default function EventDetail() {
             </Flex>
           </Box>
         </Flex>
-        <Flex px="4" py="12" justifyContent={"space-between"}>
+        <Flex px="4" py="12" justifyContent={"space-between"} flexDirection={['column','column','row']}>
 
-          <Box minW={'md'} maxW={'lg'} >
+          <Box minW={['sm','md']} maxW={['sm','lg']} >
             <Text fontWeight={500} fontSize={'xl'} borderBottom={'4px'} borderColor={'purple.400'} w={'fit-content'}>Event Details</Text>
             <Heading fontWeight={'bold'} fontSize={'5xl'} mt={2}>{eventdata?.name}</Heading>
-            <Text textAlign={"justify"} fontSize={'2xl'} my={2}>{eventdata?.description}</Text>
+            <Text textAlign={"justify"} fontSize={['xl','2xl']} my={2}>{eventdata?.description}</Text>
             <Text fontSize={"md"}>Offline Event</Text> 
             
             {isRegistered ? (
@@ -241,7 +243,7 @@ export default function EventDetail() {
               </Button>
             )}
           </Box>
-          <Box >
+          <Flex flexDirection = {['column','row','column']} justifyContent = {'space-between'}>
             
             <Box
               w={"xs"}
@@ -254,11 +256,12 @@ export default function EventDetail() {
               h={"max-content"}
               textAlign={'left'}
             >
-              <Box py="2" borderBottom={"4px"} borderColor={'purple.400'}>
-                <Heading fontSize={"2xl"}>Organizer</Heading>
+              <Box py="2">
+                <Heading fontSize={"2xl"} py={2}>Organizer</Heading>
+                <Divider borderColor={'purple.400'}/>
               </Box>
               <HStack mt={4}>
-              <Box w="16">
+              <Box w="14">
               <Avatar
                     size={"md"}
                     src={organizerImg}
@@ -280,7 +283,8 @@ export default function EventDetail() {
               h={"max-content"}
               textAlign={'left'}
             >
-              <Heading fontSize={"2xl"} borderBottom={'4px'} borderColor={'purple.400'} py={2}>Share</Heading>
+              <Heading fontSize={"2xl"} py={2}>Share</Heading>
+              <Divider />
             <Flex mt={2}>
             <a
                   rel="noopener noreferer"
@@ -336,7 +340,7 @@ export default function EventDetail() {
                 </a>
               </HStack>
             </Button> */}
-          </Box>
+          </Flex>
         </Flex>
       </Box>
     </Container>
