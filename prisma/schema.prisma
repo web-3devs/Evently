@@ -16,8 +16,8 @@ model events {
   image        String?        @db.VarChar
   created_by   String         @db.Uuid
   profile      profile        @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  participants participants[]
   credintials  credintials[]
+  participants participants[]
 }
 
 model participants {
@@ -43,6 +43,6 @@ model credintials {
   id       String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   username String @db.VarChar
   password String @db.VarChar
-  eventId String @db.Uuid
-  events   events @relation(fields: [eventId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  event_id String @db.Uuid
+  events   events @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
