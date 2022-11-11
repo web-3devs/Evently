@@ -38,7 +38,6 @@ export default function EventDetail() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [isloading, setIsloading] = useState(false);
   const [isDone, setIsDone] = useState(false);
-  // console.log(events)
   if (router.isFallback) {
     return <Container>Loading</Container>;
   }
@@ -250,7 +249,11 @@ export default function EventDetail() {
               <Box w="16">
               <Avatar
                     size={"md"}
-                    src={user.currentUser?.image}
+                    src={allUser?.map((user)=>{
+                      if(user?.id == eventdata?.created_by){
+                        return user?.image
+                      }
+                    })}
                     name={user.currentUser?.name}
                   />
                   </Box>
