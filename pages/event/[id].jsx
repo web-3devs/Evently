@@ -31,10 +31,14 @@ export default function EventDetail() {
   const { id } = router.query;
   const events = useSelector((state) => state.allEvents);
   const user = useSelector((state) => state.userData);
+  console.log(user)
+  const allUser = user?.allUser;
+  console.log(allUser)
   const eventdata = events.allEvents?.find((project) => project.id === id);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isloading, setIsloading] = useState(false);
   const [isDone, setIsDone] = useState(false);
+  // console.log(events)
   if (router.isFallback) {
     return <Container>Loading</Container>;
   }
@@ -149,7 +153,7 @@ export default function EventDetail() {
           <Box mt={8} ml={8}>
             <Flex alignItems='center'>
               <Img src={'/calendar.svg'} w={8} h={8} mr={2} />
-              <Text fontSize={'lg'}>Thu, 17 Nov, 10:00 - 17:00 GMT+5:30</Text>
+              <Text fontSize={'lg'}>{eventdata?.date_time? convertDate(eventdata?.date_time) : null} , {eventdata?.date_time ? getTime(eventdata?.date_time) : null}</Text>
             </Flex>
             <Flex mt={4} alignItems={'start'}>
               <Img src={'/locate.svg'} w={8} h={8} mr={2} />
@@ -163,6 +167,7 @@ export default function EventDetail() {
             <Text fontWeight={500} fontSize={'xl'} borderBottom={'4px'} borderColor={'purple.400'} w={'fit-content'}>Event Details</Text>
             <Heading fontWeight={'bold'} fontSize={'5xl'} mt={2}>{eventdata?.name}</Heading>
             <Text textAlign={"justify"} fontSize={'2xl'} my={2}>{eventdata?.description}</Text>
+            <Text fontSize={"md"}>Offline Event</Text> 
             
             {isRegistered ? (
               <Button
@@ -251,44 +256,6 @@ export default function EventDetail() {
                   </Box>
                   <Text fontSize={"xl"} fontWeight={500}>Host Name</Text>
               </HStack>
-              {/* <HStack mt={4}>
-                <Box w="24">
-                  <Text fontSize={"md"} fontWeight="semibold">
-                    Type
-                  </Text>
-                </Box>
-                <Text fontSize={"md"}>Offline</Text>
-              </HStack>
-              <HStack mt={4}>
-                <Box w="24">
-                  <Text fontSize={"md"} fontWeight="semibold">
-                    Date
-                  </Text>
-                </Box>
-                <Text fontSize={"md"}>
-                  {eventdata?.date_time
-                    ? convertDate(eventdata?.date_time)
-                    : null}
-                </Text>
-              </HStack>
-              <HStack mt={4}>
-                <Box w="24">
-                  <Text fontSize={"md"} fontWeight="semibold">
-                    Time
-                  </Text>
-                </Box>
-                <Text fontSize={"md"}>
-                  {eventdata?.date_time ? getTime(eventdata?.date_time) : null}
-                </Text>
-              </HStack>
-              <HStack mt={4}>
-                <Box w="24">
-                  <Text fontSize={"md"} fontWeight="semibold">
-                    Venue
-                  </Text>
-                </Box>
-                <Text fontSize={"md"}>Something</Text>
-              </HStack> */}
             </Box>
             <Box
               w={"xs"}
@@ -304,8 +271,12 @@ export default function EventDetail() {
             >
               <Heading fontSize={"2xl"} borderBottom={'4px'} borderColor={'purple.400'} py={2}>Share</Heading>
             <Flex mt={2}>
-              <Image src='/instagram.svg' height={44} width={44}/>
-              <Image src='/linkedin.svg' height={44} width={44}/>
+            <a
+                  rel="noopener noreferer"
+                  target={"_blank"}
+                  href={`https://twitter.com/compose/tweet/?text=I am attending ${eventdata?.name}, Don't forgot to register at Evetly\n Register now:https://evently-delta.vercel.app  `}
+                ><Image src='/instagram.svg' height={44} width={44}/></a>
+              <a><Image src='/linkedin.svg' height={44} width={44}/></a>
               <Image src='/whatsapp.svg' height={44} width={44}/>
             </Flex>
             </Box>

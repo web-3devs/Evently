@@ -3,6 +3,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { currentUser } from "../context/slices/userSlice";
+import { allUsers } from "../context/slices/userSlice";
 import { allEvents } from "../context/slices/alleventsSlice";
 import { useToast } from "@chakra-ui/react";
 
@@ -51,8 +52,16 @@ export default function Layout({ children }) {
     dispatch(allEvents(eventsdata.events));
   };
 
+  const getAllUsers = async ()=>{
+    const fecthAllUsers = await fetch("/api/getallusers");
+    const allUsersdata = await fecthAllUsers.json();
+    if (!fecthAllUsers.ok) return;
+    dispatch(allUsers(allUsersdata.users));
+  }
+
   useEffect(() => {
     getAllEvents();
+    getAllUsers();
     if (!isLoading) {
       if (user) {
         setUser();
