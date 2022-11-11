@@ -13,7 +13,7 @@ export default async function handler(req, res) {
           name,
           description,
         },
-      });
+      }); 
       res.status(200).json({ user: user });
     } catch (error) {
       res.status(400).json({ error });

@@ -26,6 +26,7 @@ model participants {
   name       String?   @db.VarChar
   email      String    @db.VarChar
   event_id   String    @db.Uuid
+  isAttended Boolean   @default(false)
   events     events    @relation(fields: [event_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 

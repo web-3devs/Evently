@@ -16,8 +16,17 @@ export default async function handler(req, res) {
 					password,
 				},
 			})
+			const event_id = isFound[0].event_id
 			if (isFound) {
-				res.status(200).json({ isFound })
+				const event_data = await prisma.events.findMany({
+					select: {
+						participants: true,
+					},
+					where: {
+						id: event_id,
+					},
+				})
+				res.status(200).json({ isFound, event_data })
 			} else {
 				res.status(406).json({ message: 'Not allowed' })
 			}
