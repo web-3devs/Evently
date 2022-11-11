@@ -52,9 +52,9 @@ export default function EventDetail() {
     }
   }
 
-  function organizerInfo(){
-    allUser?.map((user)=>{
-      if(user?.id == eventdata?.created_by){
+  function organizerInfo() {
+    allUser?.map((user) => {
+      if (user?.id == eventdata?.created_by) {
         setOrganizerName(user?.name);
         setOrganizerImg(user?.image);
       }
@@ -157,16 +157,16 @@ export default function EventDetail() {
     <Container maxW={"5xl"} p={0}>
       <Box mt={[6, 12]}>
         <Box w={'full'} h='52' bg={"purple.400"} borderTopRadius={'md'}>
-        <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} display={['block','none']} />
+          <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} display={['block', 'none']} />
         </Box>
         <Flex>
-          <Box h="xs" w="sm" mt={'-36'} ml={8} bgColor={'#bdb2ff'} borderRadius={4} display={['none','block']}>
+          <Box h="xs" w="sm" mt={'-36'} ml={8} bgColor={'#bdb2ff'} borderRadius={4} display={['none', 'block']}>
             <Img src={eventdata?.image} w="full" h="full" objectFit={"contain"} />
           </Box>
-          <Box mt={8} ml={[4,8]}>
+          <Box mt={8} ml={[4, 8]}>
             <Flex alignItems='center'>
               <Img src={'/calendar.svg'} w={8} h={8} mr={2} />
-              <Text fontSize={'lg'}>{eventdata?.date_time? convertDate(eventdata?.date_time) : null} , {eventdata?.date_time ? getTime(eventdata?.date_time) : null}</Text>
+              <Text fontSize={'lg'}>{eventdata?.date_time ? convertDate(eventdata?.date_time) : null} , {eventdata?.date_time ? getTime(eventdata?.date_time) : null}</Text>
             </Flex>
             <Flex mt={4} alignItems={'start'}>
               <Img src={'/locate.svg'} w={8} h={8} mr={2} />
@@ -174,14 +174,14 @@ export default function EventDetail() {
             </Flex>
           </Box>
         </Flex>
-        <Flex px="4" py="12" justifyContent={"space-between"} flexDirection={['column','column','row']}>
+        <Flex px="4" py="12" justifyContent={"space-between"} flexDirection={['column', 'column', 'row']}>
 
-          <Box minW={['sm','md']} maxW={['sm','lg']} >
+          <Box minW={['xs', 'md']} maxW={['xs', 'lg']} >
             <Text fontWeight={500} fontSize={'xl'} borderBottom={'4px'} borderColor={'purple.400'} w={'fit-content'}>Event Details</Text>
             <Heading fontWeight={'bold'} fontSize={'5xl'} mt={2}>{eventdata?.name}</Heading>
-            <Text textAlign={"justify"} fontSize={['xl','2xl']} my={2}>{eventdata?.description}</Text>
-            <Text fontSize={"md"}>Offline Event</Text> 
-            
+            <Text textAlign={"justify"} fontSize={['xl', '2xl']} my={2}>{eventdata?.description}</Text>
+            <Text fontSize={"md"}>Offline Event</Text>
+
             {isRegistered ? (
               <Button
                 mb={8}
@@ -243,8 +243,8 @@ export default function EventDetail() {
               </Button>
             )}
           </Box>
-          <Flex flexDirection = {['column','row','column']} justifyContent = {'space-between'}>
-            
+          <Flex flexDirection={['column', 'row', 'column']} justifyContent={'space-between'}>
+
             <Box
               w={"xs"}
               bg="white"
@@ -258,17 +258,17 @@ export default function EventDetail() {
             >
               <Box py="2">
                 <Heading fontSize={"2xl"} py={2}>Organizer</Heading>
-                <Divider borderColor={'purple.400'}/>
+                <Divider borderColor={'purple.400'} />
               </Box>
               <HStack mt={4}>
-              <Box w="14">
-              <Avatar
+                <Box w="14">
+                  <Avatar
                     size={"md"}
                     src={organizerImg}
                     name={organizerName}
                   />
-                  </Box>
-                  <Text fontSize={"xl"} fontWeight={500}>{organizerName}</Text>
+                </Box>
+                <Text fontSize={"xl"} fontWeight={500}>{organizerName}</Text>
               </HStack>
             </Box>
             <Box
@@ -285,15 +285,23 @@ export default function EventDetail() {
             >
               <Heading fontSize={"2xl"} py={2}>Share</Heading>
               <Divider />
-            <Flex mt={2}>
-            <a
-                  rel="noopener noreferer"
-                  target={"_blank"}
-                  href={`https://twitter.com/compose/tweet/?text=I am attending ${eventdata?.name}, Don't forgot to register at Evetly\n Register now:https://evently-delta.vercel.app  `}
-                ><Image src='/instagram.svg' height={44} width={44}/></a>
-              <a><Image src='/linkedin.svg' height={44} width={44}/></a>
-              <Image src='/whatsapp.svg' height={44} width={44}/>
-            </Flex>
+              <Flex mt={4}>
+                <Flex height={10} width={10} border={'1px'} borderColor={'black'} boxShadow="3px 3px 0px black" bgColor={'purple.400'} justifyContent={'center'} alignItems={'center'} mr={4}>
+                  <a
+                    rel="noopener noreferer"
+                    target={"_blank"}
+                    href={`https://twitter.com/compose/tweet/?text=I am attending ${eventdata?.name}, Don't forgot to register at Evetly\n Register now:https://evently-delta.vercel.app  `}
+                  ><Img src='/instagram.svg' height={6} width={6}/></a>
+                </Flex>
+                <Flex height={10} width={10} border={'1px'} borderColor={'black'} boxShadow="3px 3px 0px black" bgColor={'purple.400'} justifyContent={'center'} alignItems={'center'} mr={4}>
+                <a><Img src='/linkedin.svg' height={6} width={6} /></a>
+                </Flex>
+                <Flex height={10} width={10} border={'1px'} borderColor={'black'} boxShadow="3px 3px 0px black" bgColor={'purple.400'} justifyContent={'center'} alignItems={'center'} mr={4}>
+                <a><Img src='/whatsapp.svg' height={6} width={6} /></a>
+                </Flex>
+                {/* <a><Img src='/linkedin.svg' height={44} width={44} /></a>
+                <a><Img src='/whatsapp.svg' height={44} width={44} /></a> */}
+              </Flex>
             </Box>
             {/* <Button
               cursor="pointer"
