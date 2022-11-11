@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 					id: participent_id,
 				},
 			})
-			if (alreadyCheckedIn && alreadyCheckedIn.isAttended) {
+			if (alreadyCheckedIn && alreadyCheckedIn[0].isAttended) {
 				res.status(406).json({ message: 'You already registered' })
 				return
 			}
