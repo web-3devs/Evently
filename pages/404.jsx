@@ -12,9 +12,6 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
-import Navbar from "../components/Navbar";
-import Image from "next/image";
 
 export default function Custom404() {
   const router = useRouter();

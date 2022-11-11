@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 		res.status(200).json({ message: 'Method not allowed' })
 		return
 	}
-	const { sendTo, participent_id, user_name, event_name } = req.body
+	const { sendTo, participent_id, user_name, event_name } = req.body	
 
 	const transporter = nodemailer.createTransport({
 		service: 'gmail',
@@ -15,11 +15,11 @@ export default async function handler(req, res) {
 		},
 	})
 
-	const QR_CODE_URI = await generateQRCode(user_name, participent_id)
+	const QR_CODE_URI = await generateQRCode(user_name, participent_id, sendTo)
 
 	const EMAIL_TEMPLATE = `<h2>Hey <b>${user_name}</b>,</h2><br/>
 		<h3>
-		<b>🎉🎉 Congratulations 🥳🥳</b>
+		<b>🎉🎉 Congratulations 🥳🥳</b>s
 		Your seat is reserverd for ${event_name},<br/>
 		Here is your unique QR code for check-in purpose.<br/>
 		<div style='width:100%,display:flex,justify-content:center,align-items:center'>
@@ -54,8 +54,8 @@ export default async function handler(req, res) {
 	})
 }
 
-async function generateQRCode(name, participent_id) {
-	const data = { participent_id: participent_id, name: name }
+async function generateQRCode(name, participent_id, email) {
+	const data = { participent_id: participent_id, name: name, email: email }
 	const img = await QRCode.toDataURL(JSON.stringify(data))
 	return img
 }
