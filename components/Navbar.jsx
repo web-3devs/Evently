@@ -12,13 +12,24 @@ import {
   Text,
   Img,
   useToast,
+  AlertDialog,
+  AlertDialogOverlay,
+  AlertDialogContent,
+  AlertDialogBody,
+  AlertDialogHeader,
+  AlertDialogFooter,
+  useDisclosure
 } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { deleteUser } from "../context/slices/userSlice";
+import { useRef } from "react";
+
 
 export default function Navbar() {
   const dispacth = useDispatch();
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = useRef()
   const toast = useToast();
   const user = useSelector((state) => state.userData);
   const router = useRouter();
@@ -63,6 +74,35 @@ export default function Navbar() {
       bgRepeat={"no-repeat"}
       bgSize={"cover"}
     >
+      <AlertDialog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+      >
+        <AlertDialogOverlay>
+          <AlertDialogContent>
+            <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+              Delete Account
+            </AlertDialogHeader>
+
+            <AlertDialogBody>
+              Are you sure? You can't undo this action afterwards.
+            </AlertDialogBody>
+
+            <AlertDialogFooter>
+              <Button ref={cancelRef} onClick={onClose}>
+                Cancel
+              </Button>
+              <Button colorScheme='red' onClick={() => {
+                      handleDelete();
+                      onClose();
+                    }} ml={3}>
+                Delete
+              </Button>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialogOverlay>
+      </AlertDialog>
       <Container maxW={"container.xl"}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Img
@@ -125,9 +165,7 @@ export default function Navbar() {
                   </MenuItem>
                   <MenuDivider m={0} />
                   <MenuItem
-                    onClick={() => {
-                      handleDelete();
-                    }}
+                    onClick={onOpen}
                     p={3}
                     roundedBottom="lg"
                     _hover={{
