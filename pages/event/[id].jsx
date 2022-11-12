@@ -246,7 +246,7 @@ export default function EventDetail() {
           <Flex flexDirection={['column', 'row', 'column']} justifyContent={['center','space-between','center']}>
 
             <Box
-              w={"xs"}
+              w={["full","xs"]}
               bg="white"
               ml={["unset"]}
               rounded="lg"
@@ -272,7 +272,7 @@ export default function EventDetail() {
               </HStack>
             </Box>
             <Box
-              w={"xs"}
+              w={["full","xs"]}
               bg="white"
               mt={[4,0,4]}
               ml={["unset"]}
