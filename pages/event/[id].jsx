@@ -176,7 +176,7 @@ export default function EventDetail() {
         </Flex>
         <Flex px="4" py="12" justifyContent={"space-between"} flexDirection={['column', 'column', 'row']}>
 
-          <Box minW={['xs', 'md']} maxW={['xs', 'lg']} >
+          <Box minW={['xs', 'md']} maxW={['xs','xl', 'lg']} >
             <Text fontWeight={500} fontSize={'xl'} borderBottom={'4px'} borderColor={'purple.400'} w={'fit-content'}>Event Details</Text>
             <Heading fontWeight={'bold'} fontSize={'5xl'} mt={2}>{eventdata?.name}</Heading>
             <Text textAlign={"justify"} fontSize={['xl', '2xl']} my={2}>{eventdata?.description}</Text>
@@ -243,7 +243,7 @@ export default function EventDetail() {
               </Button>
             )}
           </Box>
-          <Flex flexDirection={['column', 'row', 'column']} justifyContent={'space-between'}>
+          <Flex flexDirection={['column', 'row', 'column']} justifyContent={['center','space-between','center']}>
 
             <Box
               w={"xs"}
@@ -256,11 +256,11 @@ export default function EventDetail() {
               h={"max-content"}
               textAlign={'left'}
             >
-              <Box py="2">
+              <Box py="1">
                 <Heading fontSize={"2xl"} py={2}>Organizer</Heading>
-                <Divider borderColor={'purple.400'} />
+                <Divider borderColor={'purple.400'}/>
               </Box>
-              <HStack mt={4}>
+              <HStack>
                 <Box w="14">
                   <Avatar
                     size={"md"}
@@ -274,7 +274,7 @@ export default function EventDetail() {
             <Box
               w={"xs"}
               bg="white"
-              mt={4}
+              mt={[4,0,4]}
               ml={["unset"]}
               rounded="lg"
               border="1px"
