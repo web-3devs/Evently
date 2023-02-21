@@ -139,7 +139,31 @@ export default function EventDetail() {
           });
         }
         else{
-          console.log('nahi chal raha', mail);
+          let bodyoptions={
+            sendTo: user.currentUser?.email,
+          user_name: user.currentUser?.name,
+          participent_id: p_data.participent_data.id,
+          event_name: eventdata?.name,
+          }
+          let gridMail = fetch('https://www.evently.club/api/sendGrid',{
+            method: "POST",
+            headers: {
+              "Content-type": "application/json ",
+            },
+            body: JSON.stringify(bodyoptions),
+          });
+          if (gridMail.ok){
+            toast({
+              title: "An Email has been sent to your mail",
+              status: "success",
+              position: "top",
+              duration: 4000,
+              isClosable: true,
+            });
+          }
+          else {
+            console.log('error',gridMail);
+          }
         }
       }
     } catch (err) {

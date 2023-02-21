@@ -15,7 +15,7 @@ export default async function handler(req, res) {
 		},
 	})
 
-	const QR_CODE_URI = await generateQRCode(user_name, participent_id, sendTo)
+	const QR_CODE_URI = await generateQRCode(user_name, participent_id, sendTo);
 
 	const EMAIL_TEMPLATE = `<h2>Hey <b>${user_name}</b>,</h2><br/>
 		<h3>
