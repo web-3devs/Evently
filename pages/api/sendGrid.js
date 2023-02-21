@@ -1,4 +1,5 @@
 import mail from "@sendgrid/mail";
+import QRCode from 'qrcode';
 
 export default async function handler(req, res) {
     mail.setApiKey(process.env.SENDGRID_KEY);
@@ -35,10 +36,9 @@ export default async function handler(req, res) {
         html: mailContent,
     }
 
-    (async () => {
-        try {
-          await mail.send(msg);
-          res.status(200).json({ message: 'Email Sent' })
+    try {
+          const data = await mail.send(msg);
+          res.json(data);
         } catch (error) {
             res.status(400).json({ message: 'failed' })
       
@@ -46,7 +46,6 @@ export default async function handler(req, res) {
             console.error(error.response.body);
           }
         }
-      })();
 
 }
 async function generateQRCode(name, participent_id, email) {
