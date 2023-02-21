@@ -71,7 +71,7 @@ export default function Profilebar() {
   const handleSubmit = async () => {
     if (editProfile) {
       data.user_id = user.currentUser?.id;
-      const update = await fetch("https://evently.club/api/updateprofile", {
+      const update = await fetch("https://www.evently.club/api/updateprofile", {
         method: "PUT",
         headers: {
           "Content-type": "application/json",
@@ -101,7 +101,7 @@ export default function Profilebar() {
       event.user_id = user.currentUser?.id;
       const imageLink = await uploadImage(image);
       event.image = imageLink;
-      const addEvent = await fetch("https://evently.club/api/setevent", {
+      const addEvent = await fetch("https://www.evently.club/api/setevent", {
         method: "POST",
         headers: {
           "Content-type": "application/json ",
@@ -129,7 +129,7 @@ export default function Profilebar() {
           email: user.currentUser?.email,
         });
 
-        let response = await fetch("https://evently.club/api/generatecred", {
+        let response = await fetch("https://www.evently.club/api/generatecred", {
           method: "POST",
           body: bodyContent,
           headers: headersList,
@@ -143,7 +143,7 @@ export default function Profilebar() {
           event_name: eventData.event.name,
           pass: id_pass.data.password,
         };
-        let mailresponse = await fetch("https://evently.club/api/sendcred", {
+        let mailresponse = await fetch("https://www.evently.club/api/sendcred", {
           method: "POST",
           body: JSON.stringify(creddata),
           headers: headersList,

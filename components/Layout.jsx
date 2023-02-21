@@ -13,7 +13,7 @@ export default function Layout({ children }) {
   const toast = useToast();
 
   const setUser = async () => {
-    const data = await fetch("/api/setuser", {
+    const data = await fetch("https://www.evently.club/api/setuser", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -46,14 +46,14 @@ export default function Layout({ children }) {
   };
 
   const getAllEvents = async () => {
-    const fetchAllEvents = await fetch("/api/getallevents");
+    const fetchAllEvents = await fetch("https://www.evently.club/api/getallevents");
     const eventsdata = await fetchAllEvents.json();
     if (!fetchAllEvents.ok) return;
     dispatch(allEvents(eventsdata.events));
   };
 
   const getAllUsers = async ()=>{
-    const fecthAllUsers = await fetch("/api/getallusers");
+    const fecthAllUsers = await fetch("https://www.evently.club/api/getallusers");
     const allUsersdata = await fecthAllUsers.json();
     if (!fecthAllUsers.ok) return;
     dispatch(allUsers(allUsersdata.users));

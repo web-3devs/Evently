@@ -191,7 +191,7 @@ export default function Navbar() {
               justifyContent="center"
               rounded={"sm"}
               onClick={() => {
-                router.push("https://evently.club/api/auth/login");
+                router.push("https://www.evently.club/api/auth/login");
               }}
               w={{
                 base: 28,

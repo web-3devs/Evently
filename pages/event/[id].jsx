@@ -91,7 +91,7 @@ export default function EventDetail() {
         name: user.currentUser?.name,
         event_id: eventdata.id,
       };
-      const addparticipent = await fetch("https://evently.club/api/addpartcipent", {
+      const addparticipent = await fetch("https://www.evently.club/api/addpartcipent", {
         method: "post",
         headers: {
           "Content-type": "application/json ",
@@ -122,7 +122,7 @@ export default function EventDetail() {
           participent_id: p_data.participent_data.id,
           event_name: eventdata?.name,
         };
-        let mail = await fetch("https://evently.club/api/sendmail", {
+        let mail = await fetch("https://www.evently.club/api/sendmail", {
           method: "POST",
           headers: {
             "Content-type": "application/json ",
