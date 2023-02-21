@@ -138,33 +138,6 @@ export default function EventDetail() {
             isClosable: true,
           });
         }
-        else{
-          let bodyoptions={
-            sendTo: user.currentUser?.email,
-          user_name: user.currentUser?.name,
-          participent_id: p_data.participent_data.id,
-          event_name: eventdata?.name,
-          }
-          let gridMail = fetch('https://www.evently.club/api/sendGrid',{
-            method: "POST",
-            headers: {
-              "Content-type": "application/json ",
-            },
-            body: JSON.stringify(bodyoptions),
-          });
-          if (gridMail.ok){
-            toast({
-              title: "An Email has been sent to your mail",
-              status: "success",
-              position: "top",
-              duration: 4000,
-              isClosable: true,
-            });
-          }
-          else {
-            console.log('error',gridMail);
-          }
-        }
       }
     } catch (err) {
       console.log(err.name);
@@ -203,7 +176,7 @@ export default function EventDetail() {
         </Flex>
         <Flex px="4" py="12" justifyContent={"space-between"} flexDirection={['column', 'column', 'row']}>
 
-          <Box minW={['xs', 'md']} maxW={['xs','xl', 'lg']} >
+          <Box minW={['xs', 'md']} maxW={['xs', 'xl', 'lg']} >
             <Text fontWeight={500} fontSize={'xl'} borderBottom={'4px'} borderColor={'purple.400'} w={'fit-content'}>Event Details</Text>
             <Heading fontWeight={'bold'} fontSize={'5xl'} mt={2}>{eventdata?.name}</Heading>
             <Text textAlign={"justify"} fontSize={['xl', '2xl']} my={2}>{eventdata?.description}</Text>
@@ -270,10 +243,10 @@ export default function EventDetail() {
               </Button>
             )}
           </Box>
-          <Flex flexDirection={['column', 'row', 'column']} justifyContent={['center','space-between','center']}>
+          <Flex flexDirection={['column', 'row', 'column']} justifyContent={['center', 'space-between', 'center']}>
 
             <Box
-              w={["full","xs"]}
+              w={["full", "xs"]}
               bg="white"
               ml={["unset"]}
               rounded="lg"
@@ -285,7 +258,7 @@ export default function EventDetail() {
             >
               <Box py="1">
                 <Heading fontSize={"2xl"} py={2}>Organizer</Heading>
-                <Divider borderColor={'purple.400'}/>
+                <Divider borderColor={'purple.400'} />
               </Box>
               <HStack>
                 <Box w="14">
@@ -299,9 +272,9 @@ export default function EventDetail() {
               </HStack>
             </Box>
             <Box
-              w={["full","xs"]}
+              w={["full", "xs"]}
               bg="white"
-              mt={[4,0,4]}
+              mt={[4, 0, 4]}
               ml={["unset"]}
               rounded="lg"
               border="1px"
@@ -318,13 +291,13 @@ export default function EventDetail() {
                     rel="noopener noreferer"
                     target={"_blank"}
                     href={`https://twitter.com/compose/tweet/?text=I am attending ${eventdata?.name}, Don't forgot to register at Evetly\n Register now:https://evently-delta.vercel.app  `}
-                  ><Img src='/instagram.svg' height={6} width={6}/></a>
+                  ><Img src='/instagram.svg' height={6} width={6} /></a>
                 </Flex>
                 <Flex height={10} width={10} border={'1px'} borderColor={'black'} boxShadow="3px 3px 0px black" bgColor={'purple.400'} justifyContent={'center'} alignItems={'center'} mr={4}>
-                <a><Img src='/linkedin.svg' height={6} width={6} /></a>
+                  <a><Img src='/linkedin.svg' height={6} width={6} /></a>
                 </Flex>
                 <Flex height={10} width={10} border={'1px'} borderColor={'black'} boxShadow="3px 3px 0px black" bgColor={'purple.400'} justifyContent={'center'} alignItems={'center'} mr={4}>
-                <a><Img src='/whatsapp.svg' height={6} width={6} /></a>
+                  <a><Img src='/whatsapp.svg' height={6} width={6} /></a>
                 </Flex>
                 {/* <a><Img src='/linkedin.svg' height={44} width={44} /></a>
                 <a><Img src='/whatsapp.svg' height={44} width={44} /></a> */}

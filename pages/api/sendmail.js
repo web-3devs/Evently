@@ -46,8 +46,31 @@ export default async function handler(req, res) {
 
 	transporter.sendMail(mailOptions, function (error, info) {
 		if (error) {
-			console.log(error)
-			res.status(400).json({ message: 'failed' })
+			let bodyoptions = {
+				sendTo: sendTo,
+				user_name: user_name,
+				participent_id: participent_id,
+				event_name: event_name,
+			  }
+			  let gridMail = fetch('https://www.evently.club/api/sendGrid', {
+				method: "POST",
+				headers: {
+				  "Content-type": "application/json ",
+				},
+				body: JSON.stringify(bodyoptions),
+			  });
+			  if (gridMail.ok) {
+				toast({
+				  title: "An Email has been sent to your mail",
+				  status: "success",
+				  position: "top",
+				  duration: 4000,
+				  isClosable: true,
+				});
+			  }
+			  else {
+				console.log('error', gridMail);
+			  }
 		}
 		console.log('Message sent: ' + info.response)
 		res.status(200).json({ message: 'Email Sent' })

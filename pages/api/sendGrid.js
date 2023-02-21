@@ -38,8 +38,9 @@ export default async function handler(req, res) {
     (async () => {
         try {
           await mail.send(msg);
+          rres.status(200).json({ message: 'Email Sent' })
         } catch (error) {
-          console.error(error);
+            res.status(400).json({ message: 'failed' })
       
           if (error.response) {
             console.error(error.response.body);
