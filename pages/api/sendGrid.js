@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
     const mailContent = `<h2>Hey <b>${user_name}</b>,</h2><br/>
 		<h3>
-		<b>🎉🎉 Congratulations 🥳🥳</b>s
+		<b>🎉🎉 Congratulations 🥳🥳</b>
 		Your seat is reserverd for ${event_name},<br/>
 		Here is your unique QR code for check-in purpose.<br/>
 		<div style='width:100%,display:flex,justify-content:center,align-items:center'>
@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     (async () => {
         try {
           await mail.send(msg);
-          rres.status(200).json({ message: 'Email Sent' })
+          res.status(200).json({ message: 'Email Sent' })
         } catch (error) {
             res.status(400).json({ message: 'failed' })
       
