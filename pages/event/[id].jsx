@@ -32,9 +32,7 @@ export default function EventDetail() {
   const { id } = router.query;
   const events = useSelector((state) => state.allEvents);
   const user = useSelector((state) => state.userData);
-  console.log(user)
   const allUser = user?.allUsers;
-  console.log(allUser)
   const eventdata = events.allEvents?.find((project) => project.id === id);
   const [isRegistered, setIsRegistered] = useState(false);
   const [isloading, setIsloading] = useState(false);
@@ -166,11 +164,11 @@ export default function EventDetail() {
           <Box mt={8} ml={[4, 8]}>
             <Flex alignItems='center'>
               <Img src={'/calendar.svg'} w={8} h={8} mr={2} />
-              <Text fontSize={'lg'}>{eventdata?.date_time ? convertDate(eventdata?.date_time) : null} , {eventdata?.date_time ? getTime(eventdata?.date_time) : null}</Text>
+              <Text fontSize={'lg'}>{eventdata?.date_time ? convertDate(eventdata?.date_time) : null} , {eventdata?.date_time ? '10:00 AM' : null}</Text>
             </Flex>
             <Flex mt={4} alignItems={'start'}>
               <Img src={'/locate.svg'} w={8} h={8} mr={2} />
-              <Text fontSize={'lg'}>Nirma University, Sarkhej - Gandhinagar Hwy, Gota, Ahmedabad, Gujarat 382481, India</Text>
+              <Text fontSize={'lg'}>IT Seminar Hall, SVIT, Vasad</Text>
             </Flex>
           </Box>
         </Flex>

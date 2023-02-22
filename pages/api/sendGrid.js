@@ -2,16 +2,16 @@ import mail from "@sendgrid/mail";
 import QRCode from 'qrcode';
 
 export default async function handler(req, res) {
-    mail.setApiKey(process.env.SENDGRID_KEY);
-    if (!req.method === 'POST') {
-        res.status(200).json({ message: 'Method not allowed' })
-        return
-    }
-    const { sendTo, user_name, participent_id,  event_name } = req.body;
+  mail.setApiKey(process.env.SENDGRID_KEY);
+  if (!req.method === 'POST') {
+    res.status(200).json({ message: 'Method not allowed' })
+    return
+  }
+  const { sendTo, user_name, participent_id, event_name } = req.body;
 
-    const QR_CODE_URI = await generateQRCode(user_name, participent_id, sendTo);
+  const QR_CODE_URI = await generateQRCode(user_name, participent_id, sendTo);
 
-    const mailContent = `<h2>Hey <b>${user_name}</b>,</h2><br/>
+  const mailContent = `<h2>Hey <b>${user_name}</b>,</h2><br/>
 		<h3>
 		<b>🎉🎉 Congratulations 🥳🥳</b>
 		Your seat is reserverd for ${event_name},<br/>
@@ -28,28 +28,28 @@ export default async function handler(req, res) {
 		<h6>If you have any queries you can contact us : <a href="mailto:contactweb3devs@gmail.com">Here</a></h6>
 		</h3>
         `
-    const msg = {
-        to: sendTo,
-        from: 'contactweb3devs@gmail.com', // Use the email address or domain you verified above
-        subject: '[Web3Devs] You are in',
-        text: 'Web3Devs',
-        html: mailContent,
-    }
+  const msg = {
+    to: sendTo,
+    from: 'contactweb3devs@gmail.com', // Use the email address or domain you verified above
+    subject: '[Web3Devs] You are in',
+    text: 'Web3Devs',
+    html: mailContent,
+  }
 
-    try {
-          const data = await mail.send(msg);
-          res.json(data);
-        } catch (error) {
-            res.status(400).json({ message: error })
-      
-          if (error.response) {
-            console.error(error.response.body);
-          }
-        }
+  try {
+    const data = await mail.send(msg);
+    res.status(200).json({ message: 'mail successfully sent' });
+  } catch (error) {
+    res.status(400).json({ message: error })
+
+    if (error.response) {
+      console.error(error.response.body);
+    }
+  }
 
 }
 async function generateQRCode(name, participent_id, email) {
-	const data = { participent_id: participent_id, name: name, email: email }
-	const img = await QRCode.toDataURL(JSON.stringify(data))
-	return img
+  const data = { participent_id: participent_id, name: name, email: email }
+  const img = await QRCode.toDataURL(JSON.stringify(data))
+  return img
 }

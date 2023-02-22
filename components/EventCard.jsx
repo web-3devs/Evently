@@ -28,7 +28,7 @@ export default function EventCard({
       <Img
         h={48}
         w="full"
-        objectFit={"contain"}
+        objectFit={"cover"}
         mb={2}
         roundedTop="lg"
         src={image ? image : "BootcampWeb3Devs.png"}
