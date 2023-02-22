@@ -45,7 +45,7 @@ export default function ProfileEvents() {
             borderBottom: 0,
           }}
         >
-          Attened Events
+          Attended Events
         </Tab>
       </TabList>
       <TabPanels>

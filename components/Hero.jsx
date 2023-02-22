@@ -55,7 +55,7 @@ export default function Hero() {
               <Text color={"gray.500"} maxW={"3xl"}>
                 Tired of filling event registration form with same details? No
                 more repeating, just log-in with google and click register and
-                your are goog to go
+                your are good to go
               </Text>
               <Stack
                 spacing={6}
