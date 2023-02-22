@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         to: sendTo,
         from: 'contactweb3devs@gmail.com', // Use the email address or domain you verified above
         subject: '[Web3Devs] You are in',
-        text: '',
+        text: 'Web3Devs',
         html: mailContent,
     }
 
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
           const data = await mail.send(msg);
           res.json(data);
         } catch (error) {
-            res.status(400).json({ message: 'failed' })
+            res.status(400).json({ message: error })
       
           if (error.response) {
             console.error(error.response.body);
