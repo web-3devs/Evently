@@ -46,14 +46,14 @@ export default function Layout({ children }) {
   };
 
   const getAllEvents = async () => {
-    const fetchAllEvents = await fetch("https://www.evently.club/api/getallevents");
+    const fetchAllEvents = await fetch("http://localhost:3000/api/getallevents");
     const eventsdata = await fetchAllEvents.json();
     if (!fetchAllEvents.ok) return;
     dispatch(allEvents(eventsdata.events));
   };
 
   const getAllUsers = async ()=>{
-    const fecthAllUsers = await fetch("https://www.evently.club/api/getallusers");
+    const fecthAllUsers = await fetch("http://localhost:3000/api/getallusers");
     const allUsersdata = await fecthAllUsers.json();
     if (!fecthAllUsers.ok) return;
     dispatch(allUsers(allUsersdata.users));

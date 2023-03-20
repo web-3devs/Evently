@@ -11,7 +11,17 @@ import {
   useDisclosure,
   useToast,
   Avatar,
-  Divider
+  Divider,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  FormControl,
+  FormLabel,
+  Input,
+  ModalFooter
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -39,6 +49,17 @@ export default function EventDetail() {
   const [isDone, setIsDone] = useState(false);
   const [organizerName, setOrganizerName] = useState('');
   const [organizerImg, setOrganizerImg] = useState(null);
+  const initialRef = React.useRef(null);
+  const finalRef = React.useRef(null);
+  const [data, setData] = useState(
+    {
+      name: "",
+      email: "",
+      department: "",
+      enrollmentno: "",
+      course: ""
+    }
+  );
   if (router.isFallback) {
     return <Container>Loading</Container>;
   }
@@ -151,6 +172,12 @@ export default function EventDetail() {
     }
   }
 
+  const handleChange = (e) => {
+    const key = e.target.name;
+    const value = e.target.value;
+    setData({ ...data, [key]: value });
+  };
+
   return (
     <Container maxW={"5xl"} p={0}>
       <Box mt={[6, 12]}>
@@ -217,7 +244,8 @@ export default function EventDetail() {
                 disabled={isloading}
                 cursor="pointer"
                 onClick={() => {
-                  registerForEvent();
+                  // registerForEvent();
+                  onOpen();
                 }}
                 _hover={{
                   bg: "purple.200",
@@ -240,6 +268,68 @@ export default function EventDetail() {
                 )}
               </Button>
             )}
+            <Modal
+              initialFocusRef={initialRef}
+              finalFocusRef={finalRef}
+              isOpen={isOpen}
+              onClose={onClose}
+            >
+              <ModalOverlay />
+              <ModalContent>
+                <ModalHeader>Register for the event</ModalHeader>
+                <ModalCloseButton />
+                <ModalBody pb={6} >
+                  <Flex flexDirection={'column'} justifyContent={'space-between'} gap={4}>
+                  <FormControl isRequired>
+                    <Input
+                      placeholder="Name"
+                      _placeholder={{ color: "gray.500" }}
+                      type="text"
+                      border={"1px"}
+                      name="name"
+                      borderColor="black"
+                      rounded="sm"
+                      outline={"none"}
+                      onChange={handleChange}
+                    />
+                  </FormControl>
+
+                  <FormControl isRequired>
+                    <Input
+                      placeholder="Email"
+                      _placeholder={{ color: "gray.500" }}
+                      type="email"
+                      border={"1px"}
+                      name="email"
+                      borderColor="black"
+                      rounded="sm"
+                      outline={"none"}
+                      onChange={handleChange}
+                    />
+                  </FormControl>
+                  <FormControl isRequired>
+                    <Input
+                      placeholder="Enrollment No."
+                      _placeholder={{ color: "gray.500" }}
+                      type="email"
+                      border={"1px"}
+                      name="enrollmentno"
+                      borderColor="black"
+                      rounded="sm"
+                      outline={"none"}
+                      onChange={handleChange}
+                    />
+                  </FormControl>
+                  </Flex>
+                </ModalBody>
+                <ModalFooter>
+                  <Button colorScheme='black' bg={'purple.500'} mr={3}>
+                    Register
+                  </Button>
+                  <Button onClick={onClose}>Cancel</Button>
+                </ModalFooter>
+              </ModalContent>
+            </Modal>
           </Box>
           <Flex flexDirection={['column', 'row', 'column']} justifyContent={['center', 'space-between', 'center']}>
 
