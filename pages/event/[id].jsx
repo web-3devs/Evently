@@ -76,11 +76,11 @@ export default function EventDetail() {
         email: data?.email,
         name: data?.name,
         event_id: eventdata.id,
-        enrollment: data?.enrollmentno,
         department: data?.department,
-        course: data?.course
+        course: data?.course,
+        enrollment: data?.enrollmentno,
       };
-      const addparticipent = await fetch("/api/addnewpartcipent", {
+      const addparticipent = await fetch("/api/addnewparticipant", {
         method: "post",
         headers: {
           "Content-type": "application/json ",

@@ -8,17 +8,17 @@ datasource db {
 }
 
 model events {
-  id           String         @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  created_at   DateTime?      @default(now()) @db.Timestamptz(6)
-  name         String?        @db.VarChar
-  description  String?        @db.VarChar
-  date_time    DateTime?      @db.Timestamptz(6)
-  image        String?        @db.VarChar
-  created_by   String         @db.Uuid
-  profile      profile        @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  credintials  credintials[]
-  participants participants[]
+  id              String            @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  created_at      DateTime?         @default(now()) @db.Timestamptz(6)
+  name            String?           @db.VarChar
+  description     String?           @db.VarChar
+  date_time       DateTime?         @db.Timestamptz(6)
+  image           String?           @db.VarChar
+  created_by      String            @db.Uuid
+  profile         profile           @relation(fields: [created_by], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  credintials     credintials[]
   newparticipants newparticipants[]
+  participants    participants[]
 }
 
 model participants {
@@ -37,7 +37,7 @@ model newparticipants {
   name       String?   @db.VarChar
   email      String    @db.VarChar
   event_id   String    @db.Uuid
-  enrollment BigInt    @db.BigInt
+  enrollment BigInt
   department String    @db.VarChar
   course     String    @db.VarChar
   isAttended Boolean   @default(false)
